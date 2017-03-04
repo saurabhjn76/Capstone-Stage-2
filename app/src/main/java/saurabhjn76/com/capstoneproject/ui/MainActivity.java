@@ -1,4 +1,4 @@
-package saurabhjn76.com.capstoneproject.UI;
+package saurabhjn76.com.capstoneproject.ui;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
