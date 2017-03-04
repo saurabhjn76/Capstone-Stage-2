@@ -13,5 +13,7 @@ android:
     - sys-img-armeabi-v7a-$ANDROID_TARGET
 licenses:
     - android-sdk-license-.+
+before_install:
+    - chmod +x gradlew
 script:
   - ./gradlew build
