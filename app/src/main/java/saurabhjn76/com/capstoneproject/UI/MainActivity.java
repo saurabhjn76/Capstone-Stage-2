@@ -1,4 +1,4 @@
-package saurabhjn76.com.capstoneproject;
+package saurabhjn76.com.capstoneproject.UI;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import saurabhjn76.com.capstoneproject.R;
 
 public class MainActivity extends AppCompatActivity {
 
