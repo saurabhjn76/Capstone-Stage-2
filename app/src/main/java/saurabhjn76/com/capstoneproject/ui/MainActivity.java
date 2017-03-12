@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import saurabhjn76.com.capstoneproject.Adapter.ImageAdapter;
 import saurabhjn76.com.capstoneproject.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -33,8 +34,6 @@ public class MainActivity extends AppCompatActivity {
     public View s;
     boolean mTwoPane=true;
     GridView gridView;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +45,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         v= findViewById(R.id.content_layout);
         gridView= (GridView)findViewById(R.id.gridView);
-
+        gridView.setAdapter(new ImageAdapter(this));
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+                Toast.makeText(MainActivity.this, "" + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (!checknetconnection()) {
             Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
@@ -64,35 +70,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         setSupportActionBar(toolbar);
-        FragmentManager manager = getSupportFragmentManager();
-
-        if (findViewById(R.id.content_layout) == null) {
-            // The detail container view will be present only in the large-screen layouts
-            // (res/layout-sw600dp). If this view is present, then the activity should be
-            // in two-pane mode.
-            mTwoPane = true;
-          //  MainFragment.instance.update("popular");
-            // In two-pane mode, show the detail view in this activity by
-            // adding or replacing the detail fragment using a
-            // fragment transaction.
-            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                   /* DetailFragment detailActivityFragment = DetailFragment.newInstance(MainFragment.instance.movies.get(position));
-                    //  putExtra(Intent.EXTRA_SUBJECT,(Parcelable)movies.get(position));
-                    getSupportFragmentManager().beginTransaction().replace(R.id.detailContainer, detailActivityFragment).commit();*/
-
-                }
-            });
-
-
-
-        } else {
-          /*  mTwoPane = false;
-            manager.beginTransaction().replace(R.id.content_layout, new MainFragment()).commit();*/
-        }
-        //
 
     }
 
