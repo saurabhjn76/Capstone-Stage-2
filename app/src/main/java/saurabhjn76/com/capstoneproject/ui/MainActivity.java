@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
             // MainFragment.instance.movies =(ArrayList<Movies>)savedInstanceState.get("Movie_Saved");
         }
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.setTitle("Choose Category");
         v= findViewById(R.id.content_layout);
         gridView= (GridView)findViewById(R.id.gridView);
         gridView.setAdapter(new ImageAdapter(this));
@@ -53,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (!checknetconnection()) {
             Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
                     .setAction("CLOSE", new View.OnClickListener() {
