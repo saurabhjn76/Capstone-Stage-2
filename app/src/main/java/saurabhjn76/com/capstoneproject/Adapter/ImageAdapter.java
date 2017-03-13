@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,7 +47,7 @@ public class ImageAdapter extends BaseAdapter {
 
             convertView = mInflater.inflate(R.layout.custom_row, null);
             holder = new ViewHolder();
-            holder.txtTitle = (TextView) convertView.findViewById(R.id.category);
+            holder.txtTitle = (Button) convertView.findViewById(R.id.category);
             holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
             convertView.setTag(holder);
 
@@ -62,7 +63,7 @@ public class ImageAdapter extends BaseAdapter {
         }
 
         holder.imageView.setImageResource(mThumbIds[position]);
-        holder.txtTitle.setText("categoryies...");
+        holder.txtTitle.setText(mCatIds[position]);
         return convertView;
     }
     private class ViewHolder {
@@ -84,5 +85,13 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.series,R.drawable.politics,
             R.drawable.gk,R.drawable.random
 
+    };
+    private String[] mCatIds = {
+            "History","Arts","Geography"
+            ,"Mathmatics","Wildlife","Music",
+            "Films","Sports","Board Games","Books",
+            "Celebrities","Computers","Science & Nature","Games",
+            "Music & Theater", "Mythology", "Television","Politics",
+            "GK","Random"
     };
 }
