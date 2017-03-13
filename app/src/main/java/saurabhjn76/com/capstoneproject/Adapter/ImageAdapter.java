@@ -1,11 +1,14 @@
 package saurabhjn76.com.capstoneproject.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import saurabhjn76.com.capstoneproject.R;
 
@@ -34,19 +37,39 @@ public class ImageAdapter extends BaseAdapter {
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder= null;
         ImageView imageView;
+        LayoutInflater mInflater = (LayoutInflater) mContext
+                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,600));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+            convertView = mInflater.inflate(R.layout.custom_row, null);
+            holder = new ViewHolder();
+            holder.txtTitle = (TextView) convertView.findViewById(R.id.category);
+            holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
+            convertView.setTag(holder);
+
+         /*   imageView = new ImageView(mContext);
+            imageView.setLayoutParams(new GridView.LayoutParams(530,500));
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);*/
+
+           /* imageView.setPadding(0,4,0,4);*/
         } else {
-            imageView = (ImageView) convertView;
+           // imageView = (ImageView) convertView;
+            holder = (ViewHolder) convertView.getTag();
+
         }
 
-        imageView.setImageResource(mThumbIds[position]);
-        return imageView;
+        holder.imageView.setImageResource(mThumbIds[position]);
+        holder.txtTitle.setText("categoryies...");
+        return convertView;
     }
+    private class ViewHolder {
+        ImageView imageView;
+        TextView txtTitle;
+    }
+
 
     // references to our images
     private Integer[] mThumbIds = {
@@ -54,7 +77,7 @@ public class ImageAdapter extends BaseAdapter {
             R.drawable.geo, R.drawable.math,
             R.drawable.animals,R.drawable.music,
             R.drawable.film,R.drawable.sports,
-            R.drawable.board_game,R.drawable.books,
+            R.drawable.board_game,R.drawable.books_small,
             R.drawable.celebrities,R.drawable.computer,
             R.drawable.science_nature,R.drawable.v_gam,
             R.drawable.musictheater,R.drawable.mytho,
