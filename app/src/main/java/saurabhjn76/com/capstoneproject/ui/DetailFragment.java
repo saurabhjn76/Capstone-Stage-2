@@ -1,7 +1,5 @@
 package saurabhjn76.com.capstoneproject.ui;
 
-
-
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
@@ -77,13 +75,13 @@ public class DetailFragment extends Fragment {
         if(getActivity().getIntent().getParcelableExtra(Intent.EXTRA_SUBJECT)!=null)
             movies = getActivity().getIntent().getParcelableExtra(Intent.EXTRA_SUBJECT);
       //  getReviews(movies.id);
-        TextView headder=  ((TextView) detailFragmentView.findViewById(R.id.textView_movietitle));
-        headder.setText(movies.name);
-        Picasso.with(getActivity()).load(movies.poster_url).
-                placeholder(R.mipmap.ic_launcher).into((ImageView)detailFragmentView.findViewById(R.id.imageView));
-        ((TextView) detailFragmentView.findViewById(R.id.textView_plotSynopsis)).setText(movies.synopsis);
-        ((RatingBar) detailFragmentView.findViewById(R.id.ratingBar)).setRating(movies.rating / 2f);
-        ((TextView) detailFragmentView.findViewById(R.id.Rating_text)).setText((float) Math.round(movies.rating*10d)/10d + "/10");
+        //TextView headder=  ((TextView) detailFragmentView.findViewById(R.id.textView_movietitle));
+       // headder.setText(movies.name);
+        //Picasso.with(getActivity()).load(movies.poster_url).
+          //      placeholder(R.mipmap.ic_launcher).into((ImageView)detailFragmentView.findViewById(R.id.imageView));
+        //((TextView) detailFragmentView.findViewById(R.id.textView_plotSynopsis)).setText(movies.synopsis);
+        //((RatingBar) detailFragmentView.findViewById(R.id.ratingBar)).setRating(movies.rating / 2f);
+        //((TextView) detailFragmentView.findViewById(R.id.Rating_text)).setText((float) Math.round(movies.rating*10d)/10d + "/10");
 
         SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy");
         SimpleDateFormat dfInput = new SimpleDateFormat("yyyy-MM-dd");
@@ -94,8 +92,8 @@ public class DetailFragment extends Fragment {
             e.printStackTrace();
             releasedDate = movies.released_date;
         }
-        ((TextView) detailFragmentView.findViewById(R.id.textView_release_date)).setText(releasedDate);
-        Fav=(ImageView) detailFragmentView.findViewById(R.id.favourite);
+        //((TextView) detailFragmentView.findViewById(R.id.textView_release_date)).setText(releasedDate);
+        //Fav=(ImageView) detailFragmentView.findViewById(R.id.favourite);
         ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
 
     }

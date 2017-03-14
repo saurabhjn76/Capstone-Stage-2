@@ -47,12 +47,16 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitle("Choose Category");
         v= findViewById(R.id.content_layout);
         gridView= (GridView)findViewById(R.id.gridView);
+        FragmentManager manager = getSupportFragmentManager();
         gridView.setAdapter(new ImageAdapter(this));
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
                 Toast.makeText(MainActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+                startActivity(intent);
+
             }
         });
         if (!checknetconnection()) {
