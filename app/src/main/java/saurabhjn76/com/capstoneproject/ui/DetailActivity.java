@@ -28,7 +28,7 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
 
         FragmentManager manager = getSupportFragmentManager();
-        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setHomeButtonEnabled(true);
         Fragment frag =new DetailFragment();
 
         manager.beginTransaction().replace(R.id.detailContainer,frag).commit();

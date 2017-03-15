@@ -47,7 +47,7 @@ public class ImageAdapter extends BaseAdapter {
 
             convertView = mInflater.inflate(R.layout.custom_row, null);
             holder = new ViewHolder();
-            holder.txtTitle = (Button) convertView.findViewById(R.id.category);
+            holder.txtTitle = (TextView) convertView.findViewById(R.id.category);
             holder.imageView = (ImageView) convertView.findViewById(R.id.imageView);
             convertView.setTag(holder);
 

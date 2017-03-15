@@ -35,12 +35,14 @@ import saurabhjn76.com.capstoneproject.R;
 public class DetailFragment extends Fragment {
     public static DetailFragment instance;
     RequestQueue ReqQueue;
+
     // public String key = "c8618ff3d5fd73e6601c1d5e1ef3f337";// Wrong Key
     public String key ="Insert Your Key Here";
 
     public LinearLayout trailersList;
     public LinearLayout reviewList;
     public View detailFragmentView;
+    TextView startQuiz;
     Question movies;
     ImageView Fav;
 
@@ -74,6 +76,15 @@ public class DetailFragment extends Fragment {
             movies = getArguments().getParcelable("movies");
         if(getActivity().getIntent().getParcelableExtra(Intent.EXTRA_SUBJECT)!=null)
             movies = getActivity().getIntent().getParcelableExtra(Intent.EXTRA_SUBJECT);
+
+        startQuiz=(TextView)detailFragmentView.findViewById(R.id.strq);
+        startQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),QuestionsActivity.class);
+                startActivity(intent);
+            }
+        });
       //  getReviews(movies.id);
         //TextView headder=  ((TextView) detailFragmentView.findViewById(R.id.textView_movietitle));
        // headder.setText(movies.name);
@@ -83,7 +94,7 @@ public class DetailFragment extends Fragment {
         //((RatingBar) detailFragmentView.findViewById(R.id.ratingBar)).setRating(movies.rating / 2f);
         //((TextView) detailFragmentView.findViewById(R.id.Rating_text)).setText((float) Math.round(movies.rating*10d)/10d + "/10");
 
-        SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy");
+       /* SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy");
         SimpleDateFormat dfInput = new SimpleDateFormat("yyyy-MM-dd");
         String releasedDate;
         try {
@@ -91,7 +102,7 @@ public class DetailFragment extends Fragment {
         } catch (ParseException e){
             e.printStackTrace();
             releasedDate = movies.released_date;
-        }
+        }*/
         //((TextView) detailFragmentView.findViewById(R.id.textView_release_date)).setText(releasedDate);
         //Fav=(ImageView) detailFragmentView.findViewById(R.id.favourite);
         ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();

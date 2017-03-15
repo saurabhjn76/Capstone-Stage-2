@@ -26,4 +26,5 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_questions">QuestionsActivity</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_result">ResultActivity</string>
 </resources>

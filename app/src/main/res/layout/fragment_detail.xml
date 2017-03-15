@@ -7,7 +7,7 @@
         android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:src="@drawable/music"/>
 
@@ -69,7 +69,7 @@
 
         </LinearLayout>
         <Button
-            android:id="@+id/instr"
+            android:id="@+id/strq"
             android:layout_gravity="center"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
