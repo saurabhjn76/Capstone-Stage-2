@@ -47,7 +47,8 @@
             android:name=".ui.ResultActivity"
             android:label="@string/title_activity_result"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ui.SignupActivity"></activity>
+        <activity android:name=".ui.SignupActivity" />
+        <activity android:name=".ui.LoginActivity"></activity>
     </application>
 
 </manifest>
