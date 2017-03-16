@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             //  MainFragment.instance.movies.clear();
             // MainFragment.instance.movies =(ArrayList<Movies>)savedInstanceState.get("Movie_Saved");
         }
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("Choose Category");
         v= findViewById(R.id.content_layout);
