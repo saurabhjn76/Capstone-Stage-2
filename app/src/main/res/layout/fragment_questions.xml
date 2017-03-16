@@ -8,9 +8,57 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.QuestionsActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Q3)Whistler was the codename of this Microsoft Operating System."
+        android:id="@+id/Question"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/Question">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:background="@drawable/my_button_correct"
+                android:text="Windows XP"/>
+            <Button
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/my_button_incorrect"
+                android:text="Windows 7"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+            <Button
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:background="@drawable/my_button_bg"
+                android:text="WIndows Vistas"/>
+            <Button
+                android:layout_width="170dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/my_button_bg"
+                android:text="None of the above"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    </RelativeLayout>
