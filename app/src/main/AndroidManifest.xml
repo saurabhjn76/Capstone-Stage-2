@@ -49,7 +49,17 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".ui.SignupActivity" />
         <activity android:name=".ui.LoginActivity" />
-        <activity android:name=".ui.ResetPasswordActivity"></activity>
+        <activity android:name=".ui.ResetPasswordActivity" />
+
+        <receiver android:name=".Widget.Widget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_info" />
+        </receiver>
     </application>
 
 </manifest>
