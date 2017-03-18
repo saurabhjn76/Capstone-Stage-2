@@ -192,28 +192,26 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         int id = item.getItemId();
 
         if (id == R.id.profile) {
             // Handle the camera action
-            //Intent intent = new Intent(PersonalBoard.this, ProfileActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            startActivity(intent);
         } else if (id == R.id.changeEmail) {
-            //Intent intent = new Intent(PersonalBoard.this, CreateBoard.class);
-           // startActivity(intent);
+            drawer.closeDrawer(GravityCompat.START);
         }else if (id == R.id.delete_profile) {
-        //    Intent intent = new Intent(PersonalBoard.this, MainActivity.class);
-          //  startActivity(intent);
+           Intent intent = new Intent(MainActivity.this, LeaderBoardActivity.class);
+            startActivity(intent);
         }
-        else if (id == R.id.nav_update_profile) {
-
-        } else if (id == R.id.nav_logout) {
+        else if (id == R.id.nav_logout) {
           auth.signOut();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
