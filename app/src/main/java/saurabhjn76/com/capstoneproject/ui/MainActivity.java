@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Parcelable;
 import android.os.PersistableBundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.content.Context;
@@ -28,6 +29,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.ArrayList;
 
 import saurabhjn76.com.capstoneproject.Adapter.ImageAdapter;
@@ -38,6 +42,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     public View s;
     boolean mTwoPane=true;
     GridView gridView;
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseAuth auth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +54,24 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         setContentView(R.layout.main_activity_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
+
+        //get current user
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        authListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user == null) {
+                    // user auth state is changed - user is null
+                    // launch login activity
+                    startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                    finish();
+                }
+            }
+        };
         toolbar.setTitle("Choose Category");
         v= findViewById(R.id.content_layout);
         gridView= (GridView)findViewById(R.id.gridView);
@@ -184,9 +208,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         else if (id == R.id.nav_update_profile) {
 
         } else if (id == R.id.nav_logout) {
-         //   firebaseAuth.signOut();
-           // Intent intent = new Intent(PersonalBoard.this, WelcomeActivity.class);
-            //startActivity(intent);
+          auth.signOut();
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
