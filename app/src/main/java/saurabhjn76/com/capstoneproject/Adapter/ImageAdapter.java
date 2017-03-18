@@ -11,6 +11,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import saurabhjn76.com.capstoneproject.R;
 
 /**
@@ -24,7 +26,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return mImgUrls.length;
     }
 
     public Object getItem(int position) {
@@ -59,7 +61,11 @@ public class ImageAdapter extends BaseAdapter {
 
         }
 
-        holder.imageView.setImageResource(mThumbIds[position]);
+       // holder.imageView.setImageResource(mThumbIds[position]);
+        Picasso.with(mContext)
+                .load(mImgUrls[position])//this is optional the image to display while the url image is downloading
+                .error(R.drawable.app_logo)         //this is also optional if some error has occurred in downloading the image this image would be displayed
+                .into(holder.imageView);
         holder.txtTitle.setText(mCatIds[position]);
         return convertView;
     }
@@ -70,19 +76,7 @@ public class ImageAdapter extends BaseAdapter {
 
 
     // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.history, R.drawable.art,
-            R.drawable.geo, R.drawable.math,
-            R.drawable.animals,R.drawable.music,
-            R.drawable.film,R.drawable.sports,
-            R.drawable.board_game,R.drawable.books_small,
-            R.drawable.celebrities,R.drawable.computer,
-            R.drawable.science_nature,R.drawable.v_gam,
-            R.drawable.musictheater,R.drawable.mytho,
-            R.drawable.series,R.drawable.politics,
-            R.drawable.gk,R.drawable.random
 
-    };
     private String[] mCatIds = {
             "History","Arts","Geography"
             ,"Mathmatics","Wildlife","Music",
@@ -91,4 +85,18 @@ public class ImageAdapter extends BaseAdapter {
             "Music & Theater", "Mythology", "Television","Politics",
             "GK","Random"
     };
+    private String[] mImgUrls = {
+            "https://i.imgsafe.org/d9e2c1b290.jpg", "https://i.imgsafe.org/d9e0c6dbac.jpg",
+            "https://i.imgsafe.org/d9e1d7f61a.jpg", "https://i.imgsafe.org/d9e27e8e46.jpg",
+            "https://i.imgsafe.org/d9d9d373ec.jpg","https://i.imgsafe.org/d9e265849b.jpg",
+            "https://i.imgsafe.org/d9e1c78a92.jpg","https://i.imgsafe.org/d9e43bbb17.jpg",
+            "https://i.imgsafe.org/d9e1049818.jpg","https://i.imgsafe.org/d9e14569ab.jpg",
+            "https://i.imgsafe.org/d9e1731a0a.jpg","https://i.imgsafe.org/d9e19a4e86.jpg",
+            "https://i.imgsafe.org/da0097b6fd.jpg","https://i.imgsafe.org/d9e426205f.jpeg",
+           "https://i.imgsafe.org/d9e237fecd.jpg","https://i.imgsafe.org/d9e301d296.jpg",
+            "https://i.imgsafe.org/d9e46d81a9.jpg","https://i.imgsafe.org/d9e3163356.jpg",
+            "https://i.imgsafe.org/d9ffebe478.png","https://i.imgsafe.org/da004e30db.jpg"
+
+    };
+
 }

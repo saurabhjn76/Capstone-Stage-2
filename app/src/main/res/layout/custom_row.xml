@@ -11,7 +11,7 @@
         android:layout_height="260dp"
         android:scaleType="centerCrop"
         android:layout_marginTop="0dp"
-        android:src="@drawable/animals"/>
+        android:src="@drawable/improve"/>
     <TextView
         android:id="@+id/category"
         android:layout_width="match_parent"
