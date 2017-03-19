@@ -9,12 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
+        android:id="@+id/detailImage"
         android:src="@drawable/improve"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="40sp"
+        android:id="@+id/detailHeading"
         android:layout_marginTop="4dp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"

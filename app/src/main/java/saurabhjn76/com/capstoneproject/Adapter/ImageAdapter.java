@@ -77,7 +77,7 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
 
-    private String[] mCatIds = {
+    public static String[] mCatIds = {
             "History","Arts","Geography"
             ,"Mathmatics","Wildlife","Music",
             "Films","Sports","Board Games","Books",
@@ -85,7 +85,7 @@ public class ImageAdapter extends BaseAdapter {
             "Music & Theater", "Mythology", "Television","Politics",
             "GK","Random"
     };
-    private String[] mImgUrls = {
+    public static String[] mImgUrls = {
             "https://i.imgsafe.org/d9e2c1b290.jpg", "https://i.imgsafe.org/d9e0c6dbac.jpg",
             "https://i.imgsafe.org/d9e1d7f61a.jpg", "https://i.imgsafe.org/d9e27e8e46.jpg",
             "https://i.imgsafe.org/d9d9d373ec.jpg","https://i.imgsafe.org/d9e265849b.jpg",

@@ -5,32 +5,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
+import saurabhjn76.com.capstoneproject.Adapter.ImageAdapter;
 import saurabhjn76.com.capstoneproject.Models.Question;
 import saurabhjn76.com.capstoneproject.R;
 import saurabhjn76.com.capstoneproject.ui.QuestionsActivity;
 
 public class DetailFragment extends Fragment {
     public static DetailFragment instance;
-    RequestQueue ReqQueue;
-
-    // public String key = "c8618ff3d5fd73e6601c1d5e1ef3f337";// Wrong Key
-    public String key ="Insert Your Key Here";
-
-    public LinearLayout trailersList;
-    public LinearLayout reviewList;
     public View detailFragmentView;
     TextView startQuiz;
-    Question movies;
+    int question_id;
     ImageView Fav;
 
     public DetailFragment() {
@@ -40,8 +37,8 @@ public class DetailFragment extends Fragment {
     public static DetailFragment newInstance(Question newMovie) {
         Bundle args = new Bundle();
         DetailFragment fragment = new DetailFragment();
-        args.putParcelable("movies", newMovie);
-        fragment.setArguments(args);
+      //  args.putParcelable("QUESTION",question);
+        //fragment.setArguments(args);
         return fragment;
     }
 
@@ -56,13 +53,15 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        ReqQueue= Volley.newRequestQueue(getActivity().getApplicationContext());
-        if (getArguments() != null)
-            movies = getArguments().getParcelable("movies");
-        if(getActivity().getIntent().getParcelableExtra(Intent.EXTRA_SUBJECT)!=null)
-            movies = getActivity().getIntent().getParcelableExtra(Intent.EXTRA_SUBJECT);
-
+        if(getActivity().getIntent().getIntExtra("POSITION",-23)!=-23)
+            question_id = getActivity().getIntent().getIntExtra("POSITION",-23);
+        Log.e("Ques",question_id+"");
+        Picasso.with(getContext())
+                .load(ImageAdapter.mImgUrls[question_id])//this is optional the image to display while the url image is downloading
+                .error(R.drawable.app_logo)         //this is also optional if some error has occurred in downloading the image this image would be displayed
+                .into((ImageView)detailFragmentView.findViewById(R.id.detailImage));
+        TextView detailHead=(TextView) detailFragmentView.findViewById(R.id.detailHeading);
+        detailHead.setText(ImageAdapter.mCatIds[question_id]);
         startQuiz=(TextView)detailFragmentView.findViewById(R.id.strq);
         startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,72 +70,8 @@ public class DetailFragment extends Fragment {
                 startActivity(intent);
             }
         });
-      //  getReviews(movies.id);
-        //TextView headder=  ((TextView) detailFragmentView.findViewById(R.id.textView_movietitle));
-       // headder.setText(movies.name);
-        //Picasso.with(getActivity()).load(movies.poster_url).
-          //      placeholder(R.mipmap.ic_launcher).into((ImageView)detailFragmentView.findViewById(R.id.imageView));
-        //((TextView) detailFragmentView.findViewById(R.id.textView_plotSynopsis)).setText(movies.synopsis);
-        //((RatingBar) detailFragmentView.findViewById(R.id.ratingBar)).setRating(movies.rating / 2f);
-        //((TextView) detailFragmentView.findViewById(R.id.Rating_text)).setText((float) Math.round(movies.rating*10d)/10d + "/10");
 
-       /* SimpleDateFormat df = new SimpleDateFormat("dd MMM, yyyy");
-        SimpleDateFormat dfInput = new SimpleDateFormat("yyyy-MM-dd");
-        String releasedDate;
-        try {
-            releasedDate = df.format(dfInput.parse(movies.released_date));
-        } catch (ParseException e){
-            e.printStackTrace();
-            releasedDate = movies.released_date;
-        }*/
-        //((TextView) detailFragmentView.findViewById(R.id.textView_release_date)).setText(releasedDate);
-        //Fav=(ImageView) detailFragmentView.findViewById(R.id.favourite);
-        ContentResolver contentResolver = getActivity().getApplicationContext().getContentResolver();
+
 
     }
-
-
-    /*public void getReviews(int id){
-        String url = "http://api.themoviedb.org/3/movie/" + id + "/reviews?api_key=" + key;
-        //System.out.println("link" +url);
-
-        JsonObjectRequest req = new JsonObjectRequest(url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            JSONArray items = response.getJSONArray("results");
-                            JSONObject reviewObj;
-                            View view;
-                            for (int i = 0; i < items.length(); i++) {
-                                reviewObj = items.getJSONObject(i);
-                                Review review = new Review(reviewObj.getString("author"),reviewObj.getString("content"),reviewObj.getString("url"));
-                                reviewsAdapter.addReview(review);
-
-                            }
-                        }
-                        catch (JSONException e){
-                            e.printStackTrace();
-                        }
-                        if(reviewsAdapter.getCount()==0){
-                            reviewList.addView(reviewsAdapter.getView(-1,null,null));
-                        }
-                        for (int i = 0; i < reviewsAdapter.getCount(); i++){
-                            reviewList.addView(reviewsAdapter.getView(i, null, null));
-                        }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // error in json parsing
-            }
-        });
-
-        ReqQueue.add(req);
-    }
-*/
-
-
-
 }
