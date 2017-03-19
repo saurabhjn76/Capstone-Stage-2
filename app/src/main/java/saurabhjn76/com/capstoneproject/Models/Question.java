@@ -37,6 +37,10 @@ public class Question implements Parcelable {
         id = in.readInt();
     }
 
+    public int getCategory() {
+        return category;
+    }
+
     @Override
     public int describeContents() {
         return 0;
