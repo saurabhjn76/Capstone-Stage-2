@@ -21,12 +21,13 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle(ImageAdapter.mCatIds[getIntent().getIntExtra("POSITION",-23)]);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         FragmentManager manager = getSupportFragmentManager();
         Fragment frag =new DetailFragment();
         manager.beginTransaction().replace(R.id.detailContainer,frag).commit();
-
 
     }
 
