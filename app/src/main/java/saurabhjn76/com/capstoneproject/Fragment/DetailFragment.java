@@ -1,36 +1,23 @@
-package saurabhjn76.com.capstoneproject.ui;
+package saurabhjn76.com.capstoneproject.Fragment;
 
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.squareup.picasso.Picasso;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import saurabhjn76.com.capstoneproject.Models.Question;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.ui.QuestionsActivity;
 
 public class DetailFragment extends Fragment {
     public static DetailFragment instance;
