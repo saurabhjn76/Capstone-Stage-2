@@ -64,7 +64,6 @@ public class QuestionsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        questions= new ArrayList<Question>();
         fetch("medium",12);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -88,7 +87,7 @@ public class QuestionsActivity extends AppCompatActivity {
     }
     private void fetch(String difficulty, final int category) {
 
-        String url="https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple";
+        String url="https://opentdb.com/api.php?amount=10&category="+category+"&difficulty="+difficulty+"&type=multiple";
         JsonObjectRequest request = new JsonObjectRequest(
                 url,
                 null,
@@ -163,6 +162,7 @@ public class QuestionsActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
+        private static final String ARG_QUESTION = "QUESTION";
 
 
 
@@ -173,10 +173,11 @@ public class QuestionsActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(int sectionNumber,Question question) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putString(ARG_QUESTION,question.getName());
             fragment.setArguments(args);
             return fragment;
         }
@@ -194,7 +195,7 @@ public class QuestionsActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_questions, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.Question);
-           // textView.setText(questions.get(getArguments().getInt(ARG_SECTION_NUMBER)).getName());
+            textView.setText(getArguments().getString(ARG_QUESTION));
             return rootView;
         }
     }
@@ -213,7 +214,7 @@ public class QuestionsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(position + 1,questions.get(position));
         }
 
         @Override
