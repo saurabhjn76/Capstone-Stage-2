@@ -47,8 +47,8 @@ public class QuestionsActivity extends AppCompatActivity {
      *
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-
+    private RequestQueue mRequestQueue;
+    private ArrayList<Question> questions;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -63,6 +63,9 @@ public class QuestionsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
+        questions= new ArrayList<Question>();
+        fetch("medium",12);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -70,6 +73,7 @@ public class QuestionsActivity extends AppCompatActivity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
 
 
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -81,6 +85,49 @@ public class QuestionsActivity extends AppCompatActivity {
             }
         });*/
 
+    }
+    private void fetch(String difficulty, final int category) {
+
+        String url="https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple";
+        JsonObjectRequest request = new JsonObjectRequest(
+                url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {
+                        // TODO: Parse the JSON
+                        try {
+                            JSONArray items = jsonObject.getJSONArray("results");
+                            JSONObject questionObj;
+                            for (int i=0; i<items.length(); i++){
+                                questionObj = items.getJSONObject(i);
+
+                                JSONArray st = questionObj.getJSONArray("incorrect_answers");
+                                String[] inc =new String[st.length()];
+                                for(int j=0;j<st.length();j++)
+                                    inc[j]=st.getString(j);
+
+                                Question question = new Question(i,questionObj.getString("question"),category,questionObj.getString("correct_answer"),inc,questionObj.getString("difficulty"));
+                                    mSectionsPagerAdapter.addQuestion(question);
+                                    mSectionsPagerAdapter.notifyDataSetChanged();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(QuestionsActivity.this, "Unable to fetch data: " + volleyError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        mRequestQueue.add(request);
+    }
+    public RequestQueue getRequestQueue() {
+        return mRequestQueue;
     }
 
 
@@ -116,8 +163,8 @@ public class QuestionsActivity extends AppCompatActivity {
          * fragment.
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
-        private RequestQueue mRequestQueue;
-        private ArrayList<Question> questions;
+
+
 
         public PlaceholderFragment() {
         }
@@ -133,62 +180,21 @@ public class QuestionsActivity extends AppCompatActivity {
             fragment.setArguments(args);
             return fragment;
         }
-        public RequestQueue getRequestQueue() {
-            return mRequestQueue;
-        }
-        private void fetch(String difficulty, final int category) {
 
-            String url="https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple";
-            JsonObjectRequest request = new JsonObjectRequest(
-                    url,
-                    null,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject jsonObject) {
-                            // TODO: Parse the JSON
-                            try {
-                                JSONArray items = jsonObject.getJSONArray("results");
-                                JSONObject questionObj;
-                                for (int i=0; i<items.length(); i++){
-                                    questionObj = items.getJSONObject(i);
 
-                                    JSONArray st = questionObj.getJSONArray("incorrect_answers");
-                                    String[] inc =new String[st.length()];
-                                    for(int j=0;j<st.length();j++)
-                                        inc[j]=st.getString(j);
-
-                                    Question question = new Question(i,questionObj.getString("question"),category,questionObj.getString("correct_answer"),inc,questionObj.getString("difficulty"));
-                                    questions.add(question);
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError volleyError) {
-                            Toast.makeText(getActivity(), "Unable to fetch data: " + volleyError.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-            getRequestQueue().add(request);
-        }
 
         @Override
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
-            mRequestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-            questions= new ArrayList<Question>();
+
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_questions, container, false);
-            //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            //textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+            TextView textView = (TextView) rootView.findViewById(R.id.Question);
+           // textView.setText(questions.get(getArguments().getInt(ARG_SECTION_NUMBER)).getName());
             return rootView;
         }
     }
@@ -220,6 +226,9 @@ public class QuestionsActivity extends AppCompatActivity {
         public CharSequence getPageTitle(int position) {
 
             return questions.get(position).getCategory()+"";
+        }
+        public void addQuestion(Question question){
+            questions.add(question);
         }
     }
 }

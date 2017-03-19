@@ -41,6 +41,10 @@ public class Question implements Parcelable {
         return category;
     }
 
+    public String getName() {
+        return name;
+    }
+
     @Override
     public int describeContents() {
         return 0;
