@@ -15,9 +15,16 @@ public class Question implements Parcelable {
     public String incorrect_ans1,incorrect_ans2,incorrect_ans3;
     public String level;
 
-    public Question()
+    public Question(int id,String name, int Category, String correct_ans, String[] incorrect, String level)
     {
-
+        this.id=id;
+        this.name=name;
+        this.level=level;
+        this.correct_ans=correct_ans;
+        this.incorrect_ans1=incorrect[0];
+        this.incorrect_ans2=incorrect[1];
+        this.incorrect_ans3=incorrect[2];
+        this.category=category;
     }
     protected Question(Parcel in) {
         name = in.readString();

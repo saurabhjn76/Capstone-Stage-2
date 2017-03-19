@@ -26,8 +26,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
+import saurabhjn76.com.capstoneproject.Models.Question;
 import saurabhjn76.com.capstoneproject.R;
 
 public class QuestionsActivity extends AppCompatActivity {
@@ -43,6 +48,7 @@ public class QuestionsActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
 
+
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -55,6 +61,7 @@ public class QuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -110,6 +117,7 @@ public class QuestionsActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
         private RequestQueue mRequestQueue;
+        private ArrayList<Question> questions;
 
         public PlaceholderFragment() {
         }
@@ -128,7 +136,7 @@ public class QuestionsActivity extends AppCompatActivity {
         public RequestQueue getRequestQueue() {
             return mRequestQueue;
         }
-        private void fetch(String difficulty, int category) {
+        private void fetch(String difficulty, final int category) {
 
             String url="https://opentdb.com/api.php?amount=10&category=12&difficulty=medium&type=multiple";
             JsonObjectRequest request = new JsonObjectRequest(
@@ -138,7 +146,24 @@ public class QuestionsActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject jsonObject) {
                             // TODO: Parse the JSON
-                            
+                            try {
+                                JSONArray items = jsonObject.getJSONArray("results");
+                                JSONObject questionObj;
+                                for (int i=0; i<items.length(); i++){
+                                    questionObj = items.getJSONObject(i);
+
+                                    JSONArray st = questionObj.getJSONArray("incorrect_answers");
+                                    String[] inc =new String[st.length()];
+                                    for(int j=0;j<st.length();j++)
+                                        inc[j]=st.getString(j);
+
+                                    Question question = new Question(i,questionObj.getString("question"),category,questionObj.getString("correct_answer"),inc,questionObj.getString("difficulty"));
+                                    questions.add(question);
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
                         }
                     },
                     new Response.ErrorListener() {
@@ -155,6 +180,7 @@ public class QuestionsActivity extends AppCompatActivity {
         public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
             mRequestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
+            questions= new ArrayList<Question>();
         }
 
         @Override
