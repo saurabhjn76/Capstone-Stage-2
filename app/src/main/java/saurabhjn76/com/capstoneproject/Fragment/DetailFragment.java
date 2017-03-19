@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +30,11 @@ public class DetailFragment extends Fragment {
     public View detailFragmentView;
     TextView startQuiz;
     int question_id;
-    ImageView Fav;
+    private RadioGroup rg;
+    private RadioButton rb1;
+    private RadioButton rb2;
+    private RadioButton rb3;
+    private int selectedId=1;
 
     public DetailFragment() {
         instance=this;
@@ -63,10 +69,29 @@ public class DetailFragment extends Fragment {
         TextView detailHead=(TextView) detailFragmentView.findViewById(R.id.detailHeading);
         detailHead.setText(ImageAdapter.mCatIds[question_id]);
         startQuiz=(TextView)detailFragmentView.findViewById(R.id.strq);
-        startQuiz.setOnClickListener(new View.OnClickListener() {
+        rg = (RadioGroup) detailFragmentView.findViewById(R.id.radiogrp);
+        rb1=(RadioButton) detailFragmentView.findViewById(R.id.easy);
+        rb2=(RadioButton) detailFragmentView.findViewById(R.id.moderate);
+        rb3=(RadioButton) detailFragmentView.findViewById(R.id.hard);
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                                          public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                                              if (checkedId == rb1.getId())
+                                                  selectedId = 1;
+                                              else if (checkedId == rb2.getId())
+                                                  selectedId = 2;
+                                              else
+                                                  selectedId = 3;
+                /*Toast.makeText(getBaseContext(), selectedId+"", Toast.LENGTH_SHORT).show();*/
+                                          }
+                                      });
+
+            startQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),QuestionsActivity.class);
+                intent.putExtra("SELECTID",selectedId);
+                intent.putExtra("CATEGORY",question_id);
                 startActivity(intent);
             }
         });
