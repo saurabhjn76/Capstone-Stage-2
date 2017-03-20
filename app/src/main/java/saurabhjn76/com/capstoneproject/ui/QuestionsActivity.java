@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -108,7 +109,9 @@ public class QuestionsActivity extends AppCompatActivity {
                                 JSONArray st = questionObj.getJSONArray("incorrect_answers");
                                 String[] inc = new String[st.length()];
                                 for (int j = 0; j < st.length(); j++)
-                                    inc[j] = st.getString(j);
+                                { inc[j] = st.getString(j);
+
+                                Log.e("Inc",inc[j]);}
 
                                 Question question = new Question(i, questionObj.getString("question"), category, questionObj.getString("correct_answer"), inc, questionObj.getString("difficulty"));
                                 mSectionsPagerAdapter.addQuestion(question);
@@ -169,7 +172,7 @@ public class QuestionsActivity extends AppCompatActivity {
         private static final String ARG_QUESTION = "QUESTION";
         private static final String ARG_CORRRECT_ANS = "ANSWER";
         private static final String ARG_INCORRECT_1 = "INC1";
-        private static final String ARG_INCORRECT_2 = "INC3";
+        private static final String ARG_INCORRECT_2 = "INC2";
         private static final String ARG_INCORRECT_3 = "INC3";
 
 
@@ -205,21 +208,120 @@ public class QuestionsActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_questions, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.Question);
-            Button button1 = (Button) rootView.findViewById(R.id.ans1);
-            Button button2 = (Button) rootView.findViewById(R.id.ans2);
-            Button button3 = (Button) rootView.findViewById(R.id.ans3);
-            Button button4 = (Button) rootView.findViewById(R.id.ans4);
+            final Button button1 = (Button) rootView.findViewById(R.id.ans1);
+            final Button button2 = (Button) rootView.findViewById(R.id.ans2);
+            final Button button3 = (Button) rootView.findViewById(R.id.ans3);
+            final Button button4 = (Button) rootView.findViewById(R.id.ans4);
             textView.setText(getArguments().getString(ARG_QUESTION));
             List<String> list = new ArrayList<String>();
             list.add(getArguments().getString(ARG_CORRRECT_ANS));
             list.add(getArguments().getString(ARG_INCORRECT_3));
             list.add(getArguments().getString(ARG_INCORRECT_1));
             list.add(getArguments().getString(ARG_INCORRECT_2));
+            Log.e("List",list.toString());
             java.util.Collections.shuffle(list);
             button1.setText(list.get(0));
             button2.setText(list.get(1));
             button3.setText(list.get(2));
             button4.setText(list.get(3));
+            switch (list.indexOf(getArguments().getString(ARG_CORRRECT_ANS))){
+                case 0:button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                    }
+                });
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });
+                    button3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });
+                    button4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });  break;
+                case 1:button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                    }
+                });
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                        }
+                    });
+                    button3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });
+                    button4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });  break;
+                case 2: button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                    }
+                });
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });
+                    button3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                        }
+                    });
+                    button4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });  break;
+                case 3:button1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                    }
+                });
+                    button2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });
+                    button3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        }
+                    });
+                    button4.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                        }
+                    });  break;
+            }
             return rootView;
         }
     }
