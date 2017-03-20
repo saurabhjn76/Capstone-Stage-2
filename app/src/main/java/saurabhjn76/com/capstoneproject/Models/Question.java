@@ -70,9 +70,11 @@ public class Question implements Parcelable {
     public void writeToParcel(Parcel parcel, int flags) {
         parcel.writeString(name);
         parcel.writeString(correct_ans);
-        parcel.writeString(correct_ans);
-        parcel.writeString(correct_ans);
-        parcel.writeString(correct_ans);
+        parcel.writeString(incorrect_ans1);
+        parcel.writeString(incorrect_ans2);
+        parcel.writeString(incorrect_ans3);
+        parcel.writeString(level);
+        parcel.writeInt(category);
         parcel.writeInt(id);
     }
 

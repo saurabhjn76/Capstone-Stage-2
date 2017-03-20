@@ -3,6 +3,25 @@ package saurabhjn76.com.capstoneproject.service;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.ResultReceiver;
+import android.text.TextUtils;
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
+import saurabhjn76.com.capstoneproject.Models.Question;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -14,6 +33,10 @@ import android.content.Context;
 public class MyIntentService extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
+    public static final int STATUS_RUNNING = 0;
+    public static final int STATUS_FINISHED = 1;
+    public static final int STATUS_ERROR = 2;
+    private static final String TAG = "MyIntentService";
     private static final String ACTION_FOO = "saurabhjn76.com.capstoneproject.service.action.FOO";
     private static final String ACTION_BAZ = "saurabhjn76.com.capstoneproject.service.action.BAZ";
 
@@ -31,61 +54,125 @@ public class MyIntentService extends IntentService {
      *
      * @see IntentService
      */
-    // TODO: Customize helper method
-    public static void startActionFoo(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, MyIntentService.class);
-        intent.setAction(ACTION_FOO);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
-
-    /**
-     * Starts this service to perform action Baz with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
-     */
-    // TODO: Customize helper method
-    public static void startActionBaz(Context context, String param1, String param2) {
-        Intent intent = new Intent(context, MyIntentService.class);
-        intent.setAction(ACTION_BAZ);
-        intent.putExtra(EXTRA_PARAM1, param1);
-        intent.putExtra(EXTRA_PARAM2, param2);
-        context.startService(intent);
-    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        if (intent != null) {
-            final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
+        Log.d(TAG, "Service Started!");
+        final ResultReceiver receiver = intent.getParcelableExtra("receiver");
+        String url = intent.getStringExtra("url");
+        Bundle bundle = new Bundle();
+
+        if (!TextUtils.isEmpty(url)) {
+            /* Update UI: Download Service is Running */
+            receiver.send(STATUS_RUNNING, Bundle.EMPTY);
+
+            try {
+               ArrayList<Question> questions = downloadData(url);
+
+                /* Sending result back to activity */
+                if (null != questions && questions.size() > 0) {
+                    //bundle.putStringArray("result", results);
+                    bundle.putParcelableArrayList("result",questions);
+                    receiver.send(STATUS_FINISHED, bundle);
+                }
+            } catch (Exception e) {
+
+                /* Sending error message back to activity */
+                bundle.putString(Intent.EXTRA_TEXT, e.toString());
+                receiver.send(STATUS_ERROR, bundle);
             }
         }
+        Log.d(TAG, "Service Stopping!");
+        this.stopSelf();
+    }
+
+    private ArrayList<Question> downloadData(String requestUrl) throws IOException, DownloadException {
+        InputStream inputStream = null;
+        HttpURLConnection urlConnection = null;
+
+        /* forming th java.net.URL object */
+        URL url = new URL(requestUrl);
+        urlConnection = (HttpURLConnection) url.openConnection();
+
+        /* optional request header */
+        urlConnection.setRequestProperty("Content-Type", "application/json");
+
+        /* optional request header */
+        urlConnection.setRequestProperty("Accept", "application/json");
+
+        /* for Get request */
+        urlConnection.setRequestMethod("GET");
+        int statusCode = urlConnection.getResponseCode();
+
+        /* 200 represents HTTP OK */
+        if (statusCode == 200) {
+            inputStream = new BufferedInputStream(urlConnection.getInputStream());
+            String response = convertInputStreamToString(inputStream);
+            ArrayList<Question> questions = parseResult(response);
+            return questions;
+        } else {
+            throw new DownloadException("Failed to fetch data!!");
+        }
+    }
+
+    private  ArrayList<Question> parseResult(String response) {
+        ArrayList<Question> questions= new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(response);
+            JSONArray items = jsonObject.getJSONArray("results");
+            JSONObject questionObj;
+            for (int i = 0; i < items.length(); i++) {
+                questionObj = items.getJSONObject(i);
+
+                JSONArray st = questionObj.getJSONArray("incorrect_answers");
+                String[] inc = new String[st.length()];
+                for (int j = 0; j < st.length(); j++)
+                { inc[j] = st.getString(j).replaceAll("&quot;","\"").replaceAll("&#039;","'");
+
+                    Log.e("Inc",inc[j]);}
+
+                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), 12, questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
+                questions.add(question);
+
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return  questions;
+
+    }
+
+    private String convertInputStreamToString(InputStream inputStream) throws IOException {
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+        String line = "";
+        String result = "";
+
+        while ((line = bufferedReader.readLine()) != null) {
+            result += line;
+        }
+
+            /* Close Stream */
+        if (null != inputStream) {
+            inputStream.close();
+        }
+
+        return result;
     }
 
     /**
      * Handle action Foo in the provided background thread with the provided
      * parameters.
      */
-    private void handleActionFoo(String param1, String param2) {
-        // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    public class DownloadException extends Exception {
 
-    /**
-     * Handle action Baz in the provided background thread with the provided
-     * parameters.
-     */
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
+        public DownloadException(String message) {
+            super(message);
+        }
+
+        public DownloadException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 }
+
