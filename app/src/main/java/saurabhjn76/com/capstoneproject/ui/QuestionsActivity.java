@@ -52,7 +52,7 @@ public class QuestionsActivity extends AppCompatActivity {
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private RequestQueue mRequestQueue;
-    private ArrayList<Question> questions;
+    private static int correct_ans=0;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -65,7 +65,7 @@ public class QuestionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_questions);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        correct_ans=0;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         fetch("medium", 12);
@@ -231,12 +231,15 @@ public class QuestionsActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                         button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                        QuestionsActivity.correct_ans++;
+                        Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
@@ -244,6 +247,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
@@ -251,6 +255,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
                         }
                     });  break;
@@ -258,6 +263,7 @@ public class QuestionsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                         button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
@@ -266,12 +272,15 @@ public class QuestionsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                            QuestionsActivity.correct_ans++;
+                            Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
@@ -279,6 +288,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
                         }
                     });  break;
@@ -287,12 +297,14 @@ public class QuestionsActivity extends AppCompatActivity {
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                         button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                        button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
@@ -301,6 +313,8 @@ public class QuestionsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
+                            QuestionsActivity.correct_ans++;
+                            Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
@@ -308,12 +322,14 @@ public class QuestionsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
+                            button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                         }
                     });  break;
                 case 3:button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                         button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
@@ -321,6 +337,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
@@ -328,6 +345,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
@@ -336,6 +354,8 @@ public class QuestionsActivity extends AppCompatActivity {
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                             button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
+                            QuestionsActivity.correct_ans++;
+                            Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
                     });  break;
             }
