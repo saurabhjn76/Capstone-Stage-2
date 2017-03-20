@@ -14,12 +14,13 @@ public class ScoreContract {
     public ScoreContract(){
     }
 
-    public static final class MovieEntry implements BaseColumns {
+    public static final class ScoreEntry implements BaseColumns {
         public static final String TABLE_NAME = "scores";
         public static final String COLUMN_NAME = "category_name";
         public static final String COLUMN_LEVEL = "level";
         public static final String COLUMN_DATE = "quiz_date";
         public static final String COLUMN_SCORE = "score";
+        public static final String COLUMN_ID = "id";
 
     }
 }

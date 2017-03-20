@@ -13,6 +13,8 @@ public class Score  implements  Parcelable{
     public String date;
     public String level;
 
+    public Score(){}
+
     public Score(int id,String name, int scores, String date, String level)
     {
         this.id=id;
