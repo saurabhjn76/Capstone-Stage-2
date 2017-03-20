@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="4dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/Question">
         <LinearLayout
             android:layout_width="match_parent"
@@ -71,7 +71,18 @@
                 android:text="None of the above"/>
 
         </LinearLayout>
-
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/results"
+            android:layout_gravity="bottom"
+            android:visibility="invisible"
+            android:text="RESULTS"
+            android:background="@drawable/my_button_incorrect"/>
     </LinearLayout>
+
 
     </RelativeLayout>

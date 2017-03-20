@@ -1,5 +1,6 @@
 package saurabhjn76.com.capstoneproject.ui;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -90,6 +91,8 @@ public class QuestionsActivity extends AppCompatActivity {
         });*/
 
     }
+
+
 
     private void fetch(String difficulty, final int category) {
 
@@ -213,6 +216,7 @@ public class QuestionsActivity extends AppCompatActivity {
             final Button button2 = (Button) rootView.findViewById(R.id.ans2);
             final Button button3 = (Button) rootView.findViewById(R.id.ans3);
             final Button button4 = (Button) rootView.findViewById(R.id.ans4);
+            final Button buttonResult = (Button) rootView.findViewById(R.id.results);
             textView.setText(getArguments().getString(ARG_QUESTION));
             List<String> list = new ArrayList<String>();
             list.add(getArguments().getString(ARG_CORRRECT_ANS));
@@ -358,6 +362,17 @@ public class QuestionsActivity extends AppCompatActivity {
                             Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
                     });  break;
+            }
+            if( (getArguments().getInt(ARG_SECTION_NUMBER))==10){
+                buttonResult.setVisibility(View.VISIBLE);
+                buttonResult.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getActivity(),ResultActivity.class);
+                        intent.putExtra("SCORE",QuestionsActivity.correct_ans);
+                        startActivity(intent);
+                    }
+                });
             }
             return rootView;
         }
