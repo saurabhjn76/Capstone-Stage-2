@@ -7,7 +7,7 @@ import android.content.Context;
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
- * <p>
+ * <p/>
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
@@ -20,6 +20,10 @@ public class MyIntentService extends IntentService {
     // TODO: Rename parameters
     private static final String EXTRA_PARAM1 = "saurabhjn76.com.capstoneproject.service.extra.PARAM1";
     private static final String EXTRA_PARAM2 = "saurabhjn76.com.capstoneproject.service.extra.PARAM2";
+
+    public MyIntentService() {
+        super("MyIntentService");
+    }
 
     /**
      * Starts this service to perform action Foo with the given parameters. If
@@ -49,10 +53,6 @@ public class MyIntentService extends IntentService {
         intent.putExtra(EXTRA_PARAM1, param1);
         intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
-    }
-
-    public MyIntentService() {
-        super("MyIntentService");
     }
 
     @Override
