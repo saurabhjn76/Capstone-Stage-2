@@ -4,6 +4,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.ButtonBarLayout;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import saurabhjn76.com.capstoneproject.Models.Question;
 import saurabhjn76.com.capstoneproject.R;
@@ -163,6 +166,10 @@ public class QuestionsActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
         private static final String ARG_QUESTION = "QUESTION";
+        private static final  String ARG_CORRRECT_ANS="ANSWER";
+        private static final String ARG_INCORRECT_1="INC1";
+        private static final String ARG_INCORRECT_2="INC3";
+        private static final String ARG_INCORRECT_3="INC3";
 
 
 
@@ -178,6 +185,10 @@ public class QuestionsActivity extends AppCompatActivity {
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
             args.putString(ARG_QUESTION,question.getName());
+            args.putString(ARG_CORRRECT_ANS,question.getCorrect_ans());
+            args.putString(ARG_INCORRECT_1,question.getIncorrect_ans1());
+            args.putString(ARG_INCORRECT_2,question.getIncorrect_ans2());
+            args.putString(ARG_INCORRECT_3,question.getIncorrect_ans3());
             fragment.setArguments(args);
             return fragment;
         }
@@ -195,7 +206,13 @@ public class QuestionsActivity extends AppCompatActivity {
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_questions, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.Question);
+            Button button1 = (Button) rootView.findViewById(R.id.ans1);
+            Button button2 = (Button) rootView.findViewById(R.id.ans2);
+            Button button3 = (Button) rootView.findViewById(R.id.ans3);
+            Button button4 = (Button) rootView.findViewById(R.id.ans4);
             textView.setText(getArguments().getString(ARG_QUESTION));
+            Random random =new Random();
+
             return rootView;
         }
     }

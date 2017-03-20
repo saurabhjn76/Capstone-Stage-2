@@ -31,13 +31,15 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:background="@drawable/my_button_correct"
+                android:id="@+id/ans1"
+                android:background="@drawable/my_button_bg"
                 android:text="Windows XP"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
+                android:id="@+id/ans2"
                 android:layout_marginLeft="2dp"
-                android:background="@drawable/my_button_incorrect"
+                android:background="@drawable/my_button_bg"
                 android:text="Windows 7"/>
 
         </LinearLayout>
@@ -48,12 +50,14 @@
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
+                android:id="@+id/ans3"
                 android:background="@drawable/my_button_bg"
                 android:text="WIndows Vistas"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_marginLeft="2dp"
+                android:id="@+id/ans4"
                 android:background="@drawable/my_button_bg"
                 android:text="None of the above"/>
 

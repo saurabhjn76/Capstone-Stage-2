@@ -45,6 +45,22 @@ public class Question implements Parcelable {
         return name;
     }
 
+    public String getCorrect_ans() {
+        return correct_ans;
+    }
+
+    public String getIncorrect_ans1() {
+        return incorrect_ans1;
+    }
+
+    public String getIncorrect_ans2() {
+        return incorrect_ans2;
+    }
+
+    public String getIncorrect_ans3() {
+        return incorrect_ans3;
+    }
+
     @Override
     public int describeContents() {
         return 0;
