@@ -127,8 +127,8 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
     }
 
 
-
-    private void fetch(String difficulty, final String category,final int cat) {
+// Using Intent Service instead of Volley
+    /*private void fetch(String difficulty, final String category,final int cat) {
 
      //   String url = "https://opentdb.com/api.php?amount=20" + category + "&difficulty=" + difficulty + "&type=multiple";
         String url = "https://opentdb.com/api.php?amount=20" + category  + "&type=multiple";
@@ -172,10 +172,10 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
 
         mRequestQueue.add(request);
     }
-
-    public RequestQueue getRequestQueue() {
+*/
+   /* public RequestQueue getRequestQueue() {
         return mRequestQueue;
-    }
+    }*/
 
 
     @Override
