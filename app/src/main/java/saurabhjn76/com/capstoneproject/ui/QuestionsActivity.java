@@ -114,7 +114,9 @@ public class QuestionsActivity extends AppCompatActivity {
 
     private void fetch(String difficulty, final String category,final int cat) {
 
-        String url = "https://opentdb.com/api.php?amount=20" + category + "&difficulty=" + difficulty + "&type=multiple";
+     //   String url = "https://opentdb.com/api.php?amount=20" + category + "&difficulty=" + difficulty + "&type=multiple";
+        String url = "https://opentdb.com/api.php?amount=20" + category  + "&type=multiple";
+        Log.e("URL",url.toString());
         JsonObjectRequest request = new JsonObjectRequest(
                 url,
                 null,
