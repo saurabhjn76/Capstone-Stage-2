@@ -91,12 +91,32 @@ public class DetailFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),QuestionsActivity.class);
                 intent.putExtra("SELECTID",selectedId);
-                intent.putExtra("CATEGORY",question_id);
+                intent.putExtra("CATEGORY",CategoryNumber(question_id));
                 startActivity(intent);
             }
         });
 
 
 
+    }
+    private int CategoryNumber(int question_id){
+        switch (question_id){
+            case 0:return 23;
+            case 1:return 25;
+            case 2:return 19;
+            case 3: return 27;
+            case 4: return 12;
+            case 5: return 11;
+            case 6: return 21;
+            case 7: return 16;
+            case 8: return 10;
+            case 9: return 26;
+            case 10: return 18;
+            case 11: return 17   ; case 12: return 15 ; case 13: return 13;
+            case 14: return 20; case 15: return 22; case 16: return 14; case 17: return 24;
+            case 18: return 10; case 19: return 9;
+
+        }
+       return  9;
     }
 }

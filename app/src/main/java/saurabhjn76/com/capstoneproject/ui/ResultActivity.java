@@ -35,9 +35,9 @@ public class ResultActivity extends AppCompatActivity {
         }
         else{
             int score= intent.getIntExtra("SCORE",-1);
-            result_score.setText(score*10+"");
+            result_score.setText(score*5+"%");
             int animationDuration = 2500; // 2500ms = 2,5s
-            circularProgressBar.setProgressWithAnimation(score*10, animationDuration);
+            circularProgressBar.setProgressWithAnimation(score*5, animationDuration);
         }
         reviewQuestion.setOnClickListener(new View.OnClickListener() {
             @Override

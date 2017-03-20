@@ -69,14 +69,32 @@ public class QuestionsActivity extends AppCompatActivity {
         correct_ans=0;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        fetch("medium", 12);
+        String level= "medium";
+        String category="&category=12";
+        int cat=12;
+        if(getIntent().getIntExtra("SELECTID",-1)!=-1){
+            switch (getIntent().getIntExtra("SELECTID",1)){
+                case 1: level="easy"; break;
+                case 2: level="medium"; break;
+                case 3: level="difficult";break;
+            }
+        }
+        if(getIntent().getIntExtra("CATEGORY",-1)!=-1){
+             cat=getIntent().getIntExtra("CATEGORY",12);
+            if(cat!=9)
+            category="&category="+cat;
+            else
+                category="";
+        }
+
+        fetch(level,category,cat);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setOffscreenPageLimit(9);
+        mViewPager.setOffscreenPageLimit(19);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
@@ -94,9 +112,9 @@ public class QuestionsActivity extends AppCompatActivity {
 
 
 
-    private void fetch(String difficulty, final int category) {
+    private void fetch(String difficulty, final String category,final int cat) {
 
-        String url = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=multiple";
+        String url = "https://opentdb.com/api.php?amount=20" + category + "&difficulty=" + difficulty + "&type=multiple";
         JsonObjectRequest request = new JsonObjectRequest(
                 url,
                 null,
@@ -117,7 +135,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
                                 Log.e("Inc",inc[j]);}
 
-                                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), category, questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
+                                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), cat, questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
                                 mSectionsPagerAdapter.addQuestion(question);
                                 mSectionsPagerAdapter.notifyDataSetChanged();
                             }
@@ -363,7 +381,7 @@ public class QuestionsActivity extends AppCompatActivity {
                         }
                     });  break;
             }
-            if( (getArguments().getInt(ARG_SECTION_NUMBER))==10){
+            if( (getArguments().getInt(ARG_SECTION_NUMBER))==20){
                 buttonResult.setVisibility(View.VISIBLE);
                 buttonResult.setOnClickListener(new View.OnClickListener() {
                     @Override

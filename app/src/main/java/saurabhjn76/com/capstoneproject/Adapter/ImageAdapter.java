@@ -78,22 +78,23 @@ public class ImageAdapter extends BaseAdapter {
     // references to our images
 
     public static String[] mCatIds = {
-            "History","Arts","Geography"
-            ,"Mathmatics","Wildlife","Music",
+            "History","Arts"
+            ,"Mathematics","Wildlife","Music",
             "Films","Sports","Board Games","Books",
             "Celebrities","Computers","Science & Nature","Games",
-            "Music & Theater", "Mythology", "Television","Politics",
+            "Music & Theater", "Mythology","Geography", "Television","Politics",
             "GK","Random"
     };
     public static String[] mImgUrls = {
             "https://i.imgsafe.org/d9e2c1b290.jpg", "https://i.imgsafe.org/d9e0c6dbac.jpg",
-            "https://i.imgsafe.org/d9e1d7f61a.jpg", "https://i.imgsafe.org/d9e27e8e46.jpg",
+             "https://i.imgsafe.org/d9e27e8e46.jpg",
             "https://i.imgsafe.org/d9d9d373ec.jpg","https://i.imgsafe.org/d9e265849b.jpg",
             "https://i.imgsafe.org/d9e1c78a92.jpg","https://i.imgsafe.org/d9e43bbb17.jpg",
             "https://i.imgsafe.org/d9e1049818.jpg","https://i.imgsafe.org/d9e14569ab.jpg",
             "https://i.imgsafe.org/d9e1731a0a.jpg","https://i.imgsafe.org/d9e19a4e86.jpg",
             "https://i.imgsafe.org/da0097b6fd.jpg","https://i.imgsafe.org/d9e426205f.jpeg",
            "https://i.imgsafe.org/d9e237fecd.jpg","https://i.imgsafe.org/d9e301d296.jpg",
+            "https://i.imgsafe.org/d9e1d7f61a.jpg",
             "https://i.imgsafe.org/d9e46d81a9.jpg","https://i.imgsafe.org/d9e3163356.jpg",
             "https://i.imgsafe.org/d9ffebe478.png","https://i.imgsafe.org/da004e30db.jpg"
 
