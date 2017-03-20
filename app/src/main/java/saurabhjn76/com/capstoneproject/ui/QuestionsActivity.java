@@ -1,6 +1,7 @@
 package saurabhjn76.com.capstoneproject.ui;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +42,10 @@ import java.util.Random;
 
 import saurabhjn76.com.capstoneproject.Models.Question;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.service.MResultReceiver;
+import saurabhjn76.com.capstoneproject.service.MyIntentService;
 
-public class QuestionsActivity extends AppCompatActivity {
+public class QuestionsActivity extends AppCompatActivity implements MResultReceiver.Receiver {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -54,6 +58,7 @@ public class QuestionsActivity extends AppCompatActivity {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private RequestQueue mRequestQueue;
     private static int correct_ans=0;
+    private MResultReceiver mReceiver;
     /**
      * The {@link ViewPager} that will host the section contents.
      */
@@ -86,8 +91,19 @@ public class QuestionsActivity extends AppCompatActivity {
             else
                 category="";
         }
+        mReceiver = new MResultReceiver(new Handler());
+        mReceiver.setReceiver(this);
+        Intent intent = new Intent(Intent.ACTION_SYNC, null, this, MyIntentService.class);
+        String url = "https://opentdb.com/api.php?amount=20" + category  + "&type=multiple";
 
-        fetch(level,category,cat);
+/* Send optional extras to Download IntentService */
+        intent.putExtra("url", url);
+        intent.putExtra("receiver", mReceiver);
+        intent.putExtra("requestId", 101);
+
+        startService(intent);
+
+       // fetch(level,category,cat);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -182,6 +198,32 @@ public class QuestionsActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onReceiveResult(int resultCode, Bundle resultData) {
+        switch (resultCode) {
+            case MyIntentService.STATUS_RUNNING:
+                setProgressBarIndeterminateVisibility(true);
+                break;
+            case MyIntentService.STATUS_FINISHED:
+                /* Hide progress & extract result from bundle */
+                setProgressBarIndeterminateVisibility(false);
+
+              //  String[] results = resultData.getStringArray("result");
+                ArrayList<Question> questions = (ArrayList<Question>) resultData.getSerializable("result");
+                for(Question question: questions){
+                    mSectionsPagerAdapter.addQuestion(question);
+                    mSectionsPagerAdapter.notifyDataSetChanged();
+                }
+
+                break;
+            case MyIntentService.STATUS_ERROR:
+                /* Handle the error */
+                String error = resultData.getString(Intent.EXTRA_TEXT);
+                Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+                break;
+        }
     }
 
     /**

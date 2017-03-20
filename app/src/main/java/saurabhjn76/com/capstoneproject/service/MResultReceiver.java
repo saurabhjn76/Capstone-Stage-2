@@ -3,10 +3,13 @@ package saurabhjn76.com.capstoneproject.service;
 /**
  * Created by saurabh on 21/3/17.
  */
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.ResultReceiver;
 
-public class MResultReceiver extends MResultReceiver {
+@SuppressLint("ParcelCreator")
+public class MResultReceiver extends ResultReceiver {
     private Receiver mReceiver;
 
     public MResultReceiver(Handler handler) {

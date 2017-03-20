@@ -93,6 +93,7 @@ public class DetailFragment extends Fragment {
                 intent.putExtra("SELECTID",selectedId);
                 intent.putExtra("CATEGORY",CategoryNumber(question_id));
                 startActivity(intent);
+
             }
         });
 
