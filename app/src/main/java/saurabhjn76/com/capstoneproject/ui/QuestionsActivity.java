@@ -110,11 +110,11 @@ public class QuestionsActivity extends AppCompatActivity {
                                 JSONArray st = questionObj.getJSONArray("incorrect_answers");
                                 String[] inc = new String[st.length()];
                                 for (int j = 0; j < st.length(); j++)
-                                { inc[j] = st.getString(j);
+                                { inc[j] = st.getString(j).replaceAll("&quot;","\"").replaceAll("&#039;","'");
 
                                 Log.e("Inc",inc[j]);}
 
-                                Question question = new Question(i, questionObj.getString("question"), category, questionObj.getString("correct_answer"), inc, questionObj.getString("difficulty"));
+                                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), category, questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
                                 mSectionsPagerAdapter.addQuestion(question);
                                 mSectionsPagerAdapter.notifyDataSetChanged();
                             }
