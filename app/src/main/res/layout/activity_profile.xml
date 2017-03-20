@@ -26,4 +26,19 @@
         android:layout_below="@+id/name"
         android:layout_centerHorizontal="true"
          />
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:layout_below="@id/email"
+        android:textStyle="bold"
+        android:text="Performances..." />
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/label">
+    </ListView>
 </RelativeLayout>
