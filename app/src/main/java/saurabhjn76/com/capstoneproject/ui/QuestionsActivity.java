@@ -33,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import saurabhjn76.com.capstoneproject.Models.Question;
@@ -47,7 +48,6 @@ public class QuestionsActivity extends AppCompatActivity {
      * loaded fragment in memory. If this becomes too memory intensive, it
      * may be best to switch to a
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     *
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private RequestQueue mRequestQueue;
@@ -67,7 +67,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        fetch("medium",12);
+        fetch("medium", 12);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -88,9 +88,10 @@ public class QuestionsActivity extends AppCompatActivity {
         });*/
 
     }
+
     private void fetch(String difficulty, final int category) {
 
-        String url="https://opentdb.com/api.php?amount=10&category="+category+"&difficulty="+difficulty+"&type=multiple";
+        String url = "https://opentdb.com/api.php?amount=10&category=" + category + "&difficulty=" + difficulty + "&type=multiple";
         JsonObjectRequest request = new JsonObjectRequest(
                 url,
                 null,
@@ -101,17 +102,17 @@ public class QuestionsActivity extends AppCompatActivity {
                         try {
                             JSONArray items = jsonObject.getJSONArray("results");
                             JSONObject questionObj;
-                            for (int i=0; i<items.length(); i++){
+                            for (int i = 0; i < items.length(); i++) {
                                 questionObj = items.getJSONObject(i);
 
                                 JSONArray st = questionObj.getJSONArray("incorrect_answers");
-                                String[] inc =new String[st.length()];
-                                for(int j=0;j<st.length();j++)
-                                    inc[j]=st.getString(j);
+                                String[] inc = new String[st.length()];
+                                for (int j = 0; j < st.length(); j++)
+                                    inc[j] = st.getString(j);
 
-                                Question question = new Question(i,questionObj.getString("question"),category,questionObj.getString("correct_answer"),inc,questionObj.getString("difficulty"));
-                                    mSectionsPagerAdapter.addQuestion(question);
-                                    mSectionsPagerAdapter.notifyDataSetChanged();
+                                Question question = new Question(i, questionObj.getString("question"), category, questionObj.getString("correct_answer"), inc, questionObj.getString("difficulty"));
+                                mSectionsPagerAdapter.addQuestion(question);
+                                mSectionsPagerAdapter.notifyDataSetChanged();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -128,10 +129,10 @@ public class QuestionsActivity extends AppCompatActivity {
 
         mRequestQueue.add(request);
     }
+
     public RequestQueue getRequestQueue() {
         return mRequestQueue;
     }
-
 
 
     @Override
@@ -166,11 +167,10 @@ public class QuestionsActivity extends AppCompatActivity {
          */
         private static final String ARG_SECTION_NUMBER = "section_number";
         private static final String ARG_QUESTION = "QUESTION";
-        private static final  String ARG_CORRRECT_ANS="ANSWER";
-        private static final String ARG_INCORRECT_1="INC1";
-        private static final String ARG_INCORRECT_2="INC3";
-        private static final String ARG_INCORRECT_3="INC3";
-
+        private static final String ARG_CORRRECT_ANS = "ANSWER";
+        private static final String ARG_INCORRECT_1 = "INC1";
+        private static final String ARG_INCORRECT_2 = "INC3";
+        private static final String ARG_INCORRECT_3 = "INC3";
 
 
         public PlaceholderFragment() {
@@ -180,19 +180,18 @@ public class QuestionsActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber,Question question) {
+        public static PlaceholderFragment newInstance(int sectionNumber, Question question) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            args.putString(ARG_QUESTION,question.getName());
-            args.putString(ARG_CORRRECT_ANS,question.getCorrect_ans());
-            args.putString(ARG_INCORRECT_1,question.getIncorrect_ans1());
-            args.putString(ARG_INCORRECT_2,question.getIncorrect_ans2());
-            args.putString(ARG_INCORRECT_3,question.getIncorrect_ans3());
+            args.putString(ARG_QUESTION, question.getName());
+            args.putString(ARG_CORRRECT_ANS, question.getCorrect_ans());
+            args.putString(ARG_INCORRECT_1, question.getIncorrect_ans1());
+            args.putString(ARG_INCORRECT_2, question.getIncorrect_ans2());
+            args.putString(ARG_INCORRECT_3, question.getIncorrect_ans3());
             fragment.setArguments(args);
             return fragment;
         }
-
 
 
         @Override
@@ -211,8 +210,16 @@ public class QuestionsActivity extends AppCompatActivity {
             Button button3 = (Button) rootView.findViewById(R.id.ans3);
             Button button4 = (Button) rootView.findViewById(R.id.ans4);
             textView.setText(getArguments().getString(ARG_QUESTION));
-            Random random =new Random();
-
+            List<String> list = new ArrayList<String>();
+            list.add(getArguments().getString(ARG_CORRRECT_ANS));
+            list.add(getArguments().getString(ARG_INCORRECT_3));
+            list.add(getArguments().getString(ARG_INCORRECT_1));
+            list.add(getArguments().getString(ARG_INCORRECT_2));
+            java.util.Collections.shuffle(list);
+            button1.setText(list.get(0));
+            button2.setText(list.get(1));
+            button3.setText(list.get(2));
+            button4.setText(list.get(3));
             return rootView;
         }
     }
@@ -223,6 +230,7 @@ public class QuestionsActivity extends AppCompatActivity {
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
         public ArrayList<Question> questions = new ArrayList<Question>();
+
         public SectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -231,7 +239,7 @@ public class QuestionsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1,questions.get(position));
+            return PlaceholderFragment.newInstance(position + 1, questions.get(position));
         }
 
         @Override
@@ -243,9 +251,10 @@ public class QuestionsActivity extends AppCompatActivity {
         @Override
         public CharSequence getPageTitle(int position) {
 
-            return questions.get(position).getCategory()+"";
+            return questions.get(position).getCategory() + "";
         }
-        public void addQuestion(Question question){
+
+        public void addQuestion(Question question) {
             questions.add(question);
         }
     }
