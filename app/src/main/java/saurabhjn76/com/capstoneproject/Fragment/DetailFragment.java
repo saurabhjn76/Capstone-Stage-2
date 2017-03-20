@@ -40,11 +40,8 @@ public class DetailFragment extends Fragment {
         instance=this;
     }
 
-    public static DetailFragment newInstance(Question newMovie) {
-        Bundle args = new Bundle();
+    public static DetailFragment newInstance(Question question) {
         DetailFragment fragment = new DetailFragment();
-      //  args.putParcelable("QUESTION",question);
-        //fragment.setArguments(args);
         return fragment;
     }
 
@@ -93,7 +90,6 @@ public class DetailFragment extends Fragment {
                 intent.putExtra("SELECTID",selectedId);
                 intent.putExtra("CATEGORY",CategoryNumber(question_id));
                 startActivity(intent);
-
             }
         });
 
