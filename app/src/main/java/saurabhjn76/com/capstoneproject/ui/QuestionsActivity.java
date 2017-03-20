@@ -75,6 +75,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setOffscreenPageLimit(9);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
 
@@ -229,96 +230,112 @@ public class QuestionsActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
                         }
                     });  break;
                 case 1:button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
                         }
                     });  break;
                 case 2: button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
                         }
                     });  break;
                 case 3:button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
+                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
+                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
                         }
                     });  break;
             }
