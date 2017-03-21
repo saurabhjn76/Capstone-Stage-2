@@ -21,6 +21,20 @@ public class ScoreContract {
         public static final String COLUMN_DATE = "quiz_date";
         public static final String COLUMN_SCORE = "score";
         public static final String COLUMN_ID = "id";
+        public static final int POSITION_ID=0;
+        public static final int POSITION_NAME=1;
+        public static final int POSITION_LEVEL=2;
+        public static final int POSITION_SCORE=3;
+        public static final int POSITION_DATE=4;
+        public static final String[] SCORE_COLUMNS = {
+                _ID,
+                COLUMN_NAME,
+                COLUMN_LEVEL,
+                COLUMN_SCORE,
+                COLUMN_DATE
+        };
+
+
 
     }
 }
