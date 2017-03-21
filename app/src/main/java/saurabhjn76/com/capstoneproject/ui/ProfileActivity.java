@@ -14,8 +14,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
+import saurabhjn76.com.capstoneproject.Adapter.ScoreAdapter;
+import saurabhjn76.com.capstoneproject.Models.Score;
 import saurabhjn76.com.capstoneproject.Models.User;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.data.ScoresDB;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -24,8 +29,10 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseInstance;
     private TextView name,email;
     String userId ;
+    ScoresDB mdb;
     ListView lv;
     Context context;
+    ScoreAdapter scoreAdapter;
     private static final String TAG = ProfileActivity.class.getSimpleName();
 
     @Override
@@ -35,7 +42,10 @@ public class ProfileActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mFirebaseInstance = FirebaseDatabase.getInstance();
         context=this;
+        mdb = new ScoresDB();
         lv=(ListView) findViewById(R.id.listView);
+        scoreAdapter= new ScoreAdapter(this,mdb.getAllScores(getContentResolver())); // TODO: pass on loader
+        lv.setAdapter(scoreAdapter);
 
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");

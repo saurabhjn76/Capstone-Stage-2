@@ -1,11 +1,13 @@
 package saurabhjn76.com.capstoneproject.ui;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,10 +15,14 @@ import android.widget.Toast;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import saurabhjn76.com.capstoneproject.Models.Score;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.data.ScoresDB;
 
 public class ResultActivity extends AppCompatActivity {
 
+    ContentResolver contentResolver;
+    ScoresDB mdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +31,8 @@ public class ResultActivity extends AppCompatActivity {
         CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.progressBar);
         TextView result_score= (TextView) findViewById(R.id.resultText);
         Button reviewQuestion = (Button) findViewById(R.id.review);
+        mdb = new ScoresDB();
+        contentResolver= getContentResolver();
         Button homeButton =(Button) findViewById(R.id.Choose);
         toolbar.setTitle("Result");
         Intent intent=getIntent();
@@ -39,6 +47,11 @@ public class ResultActivity extends AppCompatActivity {
             int animationDuration = 2500; // 2500ms = 2,5s
             circularProgressBar.setProgressWithAnimation(score*5, animationDuration);
         }
+        Score score = new Score(1,"Sports",12,"22-07-2017","medium");
+       mdb.addScore(contentResolver,score);
+        Log.e("Score Added","Move to database");
+
+
         reviewQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +66,7 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
         setSupportActionBar(toolbar);
+
 
     }
 
