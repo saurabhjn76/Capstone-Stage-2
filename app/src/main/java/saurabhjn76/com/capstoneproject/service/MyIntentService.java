@@ -1,6 +1,8 @@
 package saurabhjn76.com.capstoneproject.service;
 
 import android.app.IntentService;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import saurabhjn76.com.capstoneproject.Models.Question;
+import saurabhjn76.com.capstoneproject.Widget.WidgetProvider;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -82,6 +85,7 @@ public class MyIntentService extends IntentService {
                 receiver.send(STATUS_ERROR, bundle);
             }
         }
+
         Log.d(TAG, "Service Stopping!");
         this.stopSelf();
     }

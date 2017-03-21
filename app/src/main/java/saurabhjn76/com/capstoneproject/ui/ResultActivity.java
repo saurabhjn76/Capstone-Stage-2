@@ -1,5 +1,7 @@
 package saurabhjn76.com.capstoneproject.ui;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +22,7 @@ import java.util.Date;
 
 import saurabhjn76.com.capstoneproject.Models.Score;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.Widget.WidgetProvider;
 import saurabhjn76.com.capstoneproject.data.ScoresDB;
 
 public class ResultActivity extends AppCompatActivity {
@@ -55,8 +58,13 @@ public class ResultActivity extends AppCompatActivity {
         }
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
 
-        Score score = new Score(mdb.getCount(contentResolver),category,scored*5,date,level);
+        Score score = new Score(mdb.getCount(contentResolver)+1,category,scored*5,date,level);
        mdb.addScore(contentResolver,score);
+        Intent wIntent = new Intent(this, WidgetProvider.class);
+        wIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        sendBroadcast(wIntent);
         Log.e("Score Added","Move to database");
 
 

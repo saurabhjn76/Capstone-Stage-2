@@ -7,27 +7,48 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
+import android.util.Log;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService.RemoteViewsFactory;
 
+import saurabhjn76.com.capstoneproject.Adapter.ScoreAdapter;
+import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.data.ScoreContract;
+
+//THanks to http://dharmangsoni.blogspot.in/2014/03/collection-widget-with-event-handling.html
 @SuppressLint("NewApi")
-class WidgetDataProvider implements RemoteViewsFactory {
+class WidgetDataProvider implements RemoteViewsFactory, LoaderManager.LoaderCallbacks<Cursor> {
 
-    List mCollections = new ArrayList();
+    ArrayList<String> names = new ArrayList<>();
+    ArrayList<String> date = new ArrayList<>();
+    ArrayList<String>  level = new ArrayList<>();
+    ArrayList<String> scores = new ArrayList<>();
 
+    private Cursor cursor;
     Context mContext = null;
+    private static final int SCORE_LOADER = 0;
 
     public WidgetDataProvider(Context context, Intent intent) {
         mContext = context;
     }
+    void setCursor(Cursor cursor) {
+        this.cursor = cursor;
+
+        ///  notifyDataSetChanged();
+    }
 
     @Override
     public int getCount() {
-        return mCollections.size();
+        return scores.size();
     }
 
     @Override
@@ -43,17 +64,23 @@ class WidgetDataProvider implements RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int position) {
         RemoteViews mView = new RemoteViews(mContext.getPackageName(),
-                android.R.layout.simple_list_item_1);
-        mView.setTextViewText(android.R.id.text1, (CharSequence) mCollections.get(position));
-        mView.setTextColor(android.R.id.text1, Color.BLACK);
+                R.layout.custom_row_scores);
+        mView.setTextViewText(R.id.date,  date.get(position));
+        mView.setTextColor(R.id.date, Color.BLACK);
+        mView.setTextViewText(R.id.name,  names.get(position));
+        mView.setTextColor(R.id.name, Color.BLACK);
+        mView.setTextViewText(R.id.level, level.get(position));
+        mView.setTextColor(R.id.level, Color.BLACK);
+        mView.setTextViewText(R.id.score,  scores.get(position));
+        mView.setTextColor(R.id.score, Color.BLACK);
 
         final Intent fillInIntent = new Intent();
         fillInIntent.setAction(WidgetProvider.ACTION_TOAST);
         final Bundle bundle = new Bundle();
         bundle.putString(WidgetProvider.EXTRA_STRING,
-                (String) mCollections.get(position));
+                 scores.get(position));
         fillInIntent.putExtras(bundle);
-        mView.setOnClickFillInIntent(android.R.id.text1, fillInIntent);
+        mView.setOnClickFillInIntent(R.id.score, fillInIntent);
         return mView;
     }
 
@@ -78,10 +105,22 @@ class WidgetDataProvider implements RemoteViewsFactory {
     }
 
     private void initData() {
-        mCollections.clear();
-        for (int i = 1; i <= 10; i++) {
-            mCollections.add("ListView item " + i);
+        names.clear();
+        level.clear();
+        scores.clear();
+        date.clear();
+        mContext.grantUriPermission ("com.udacity.stockhawk",ScoreContract.CONTENT_URI,Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        cursor = mContext.getContentResolver().query(ScoreContract.CONTENT_URI, ScoreContract.ScoreEntry.SCORE_COLUMNS, null, null, null);
+        if(cursor!=null){
+            while (cursor.moveToNext ()){
+               names.add (cursor.getString(ScoreContract.ScoreEntry.POSITION_NAME));
+                level.add (cursor.getString(ScoreContract.ScoreEntry.POSITION_LEVEL));
+                date.add (cursor.getString(ScoreContract.ScoreEntry.POSITION_DATE));
+                scores.add (cursor.getString(ScoreContract.ScoreEntry.POSITION_SCORE));
+            }
+            cursor.close ();
         }
+        Log.e ("Cursor",scores.toString ());
     }
 
     @Override
@@ -89,4 +128,24 @@ class WidgetDataProvider implements RemoteViewsFactory {
 
     }
 
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(mContext,
+                ScoreContract.CONTENT_URI,
+                ScoreContract.ScoreEntry.SCORE_COLUMNS,
+                null, null, null);
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data.getCount() != 0) {
+            //  error.setVisibility(View.GONE);
+        }
+        setCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        setCursor(null);
+    }
 }

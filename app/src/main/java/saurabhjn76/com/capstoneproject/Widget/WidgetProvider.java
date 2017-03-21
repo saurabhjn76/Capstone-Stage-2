@@ -7,6 +7,7 @@ import android.annotation.SuppressLint;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -19,11 +20,16 @@ import saurabhjn76.com.capstoneproject.R;
 public class WidgetProvider extends AppWidgetProvider {
     public static final String ACTION_TOAST = "saurabhjn76.com.capstoneproject.Widgets.ACTION_TOAST";
     public static final String EXTRA_STRING = "saurabhjn76.com.capstoneproject.Widgets.EXTRA_STRING";
+    public static final String WIDGET_UPDATE = "android.appwidget.action.APPWIDGET_UPDATE";
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION_TOAST)) {
             String item = intent.getExtras().getString(EXTRA_STRING);
             Toast.makeText(context, item, Toast.LENGTH_LONG).show();
+        }else if(intent.getAction ().equals (WIDGET_UPDATE)){
+            AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+                       int [] ids = appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()));
+                       appWidgetManager.notifyAppWidgetViewDataChanged(ids, R.id.widgetCollectionList);
         }
         super.onReceive(context, intent);
     }
