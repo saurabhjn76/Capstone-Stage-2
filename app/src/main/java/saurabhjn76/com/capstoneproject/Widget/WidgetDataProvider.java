@@ -80,7 +80,7 @@ class WidgetDataProvider implements RemoteViewsFactory, LoaderManager.LoaderCall
         bundle.putString(WidgetProvider.EXTRA_STRING,
                  scores.get(position));
         fillInIntent.putExtras(bundle);
-        mView.setOnClickFillInIntent(R.id.score, fillInIntent);
+        mView.setOnClickFillInIntent(R.id.container, fillInIntent);
         return mView;
     }
 
