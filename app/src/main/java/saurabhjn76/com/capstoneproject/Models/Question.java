@@ -10,12 +10,12 @@ import android.os.Parcelable;
 public class Question implements Parcelable {
     public int id;
     public String name;
-    public int category;
+    public String category;
     public String correct_ans;
     public String incorrect_ans1,incorrect_ans2,incorrect_ans3;
     public String level;
 
-    public Question(int id,String name, int Category, String correct_ans, String[] incorrect, String level)
+    public Question(int id,String name, String category, String correct_ans, String[] incorrect, String level)
     {
         this.id=id;
         this.name=name;
@@ -28,7 +28,7 @@ public class Question implements Parcelable {
     }
     protected Question(Parcel in) {
         name = in.readString();
-        category = in.readInt();
+        category = in.readString();
         correct_ans = in.readString();
         incorrect_ans1 = in.readString();
         incorrect_ans2 = in.readString();
@@ -37,7 +37,7 @@ public class Question implements Parcelable {
         id = in.readInt();
     }
 
-    public int getCategory() {
+    public String getCategory() {
         return category;
     }
 
@@ -74,7 +74,7 @@ public class Question implements Parcelable {
         parcel.writeString(incorrect_ans2);
         parcel.writeString(incorrect_ans3);
         parcel.writeString(level);
-        parcel.writeInt(category);
+        parcel.writeString(category);
         parcel.writeInt(id);
     }
 

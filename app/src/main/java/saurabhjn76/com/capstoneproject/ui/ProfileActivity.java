@@ -50,7 +50,7 @@ public class ProfileActivity extends AppCompatActivity implements LoaderManager.
         context=this;
         mdb = new ScoresDB();
         lv=(ListView) findViewById(R.id.listView);
-        scoreAdapter= new ScoreAdapter(this,mdb.getAllScores(getContentResolver())); // TODO: pass on loader
+        scoreAdapter= new ScoreAdapter(this); // TODO: pass on loader
         lv.setAdapter(scoreAdapter);
         getSupportLoaderManager().initLoader(SCORE_LOADER, null, this);
 

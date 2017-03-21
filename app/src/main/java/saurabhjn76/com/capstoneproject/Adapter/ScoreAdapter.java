@@ -22,14 +22,13 @@ import saurabhjn76.com.capstoneproject.data.ScoreContract;
 import saurabhjn76.com.capstoneproject.ui.ProfileActivity;
 
 public class ScoreAdapter extends BaseAdapter{
-    ArrayList<Score> scores;
     Context context;
     private Cursor cursor;
     private static LayoutInflater inflater=null;
-    public ScoreAdapter(ProfileActivity profileActivity, ArrayList<Score> scores) {
+    public ScoreAdapter(ProfileActivity profileActivity) {
         // TODO Auto-generated constructor stub
         context=profileActivity;
-        this.scores=new ArrayList<>(scores);
+
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

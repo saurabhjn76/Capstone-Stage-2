@@ -58,6 +58,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private RequestQueue mRequestQueue;
     private static int correct_ans=0;
+   static String level= "medium";
     private MResultReceiver mReceiver;
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -74,7 +75,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
         correct_ans=0;
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        String level= "medium";
+
         String category="&category=12";
         int cat=12;
         if(getIntent().getIntExtra("SELECTID",-1)!=-1){
@@ -240,6 +241,8 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
         private static final String ARG_INCORRECT_1 = "INC1";
         private static final String ARG_INCORRECT_2 = "INC2";
         private static final String ARG_INCORRECT_3 = "INC3";
+        private static final String ARG_LEVEL="LEVEL";
+        private static final String CATEGORY="CATEGORY";
 
 
         public PlaceholderFragment() {
@@ -258,6 +261,9 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
             args.putString(ARG_INCORRECT_1, question.getIncorrect_ans1());
             args.putString(ARG_INCORRECT_2, question.getIncorrect_ans2());
             args.putString(ARG_INCORRECT_3, question.getIncorrect_ans3());
+            args.putString(ARG_LEVEL,QuestionsActivity.level);
+            args.putString(CATEGORY,question.category);
+            Log.e("CAT",question.category);
             fragment.setArguments(args);
             return fragment;
         }
@@ -270,7 +276,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+        public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_questions, container, false);
             TextView textView = (TextView) rootView.findViewById(R.id.Question);
@@ -280,6 +286,8 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
             final Button button4 = (Button) rootView.findViewById(R.id.ans4);
             final Button buttonResult = (Button) rootView.findViewById(R.id.results);
             textView.setText(getArguments().getString(ARG_QUESTION));
+            final String level= getArguments().getString(ARG_LEVEL);
+            final String category= getArguments().getString(CATEGORY);
             List<String> list = new ArrayList<String>();
             list.add(getArguments().getString(ARG_CORRRECT_ANS));
             list.add(getArguments().getString(ARG_INCORRECT_3));
@@ -432,6 +440,8 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                     public void onClick(View v) {
                         Intent intent = new Intent(getActivity(),ResultActivity.class);
                         intent.putExtra("SCORE",QuestionsActivity.correct_ans);
+                        intent.putExtra("LEVEL",level);
+                        intent.putExtra("CATEGORY",category);
                         startActivity(intent);
                     }
                 });

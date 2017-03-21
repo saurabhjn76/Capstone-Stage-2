@@ -126,12 +126,13 @@ public class MyIntentService extends IntentService {
 
                 JSONArray st = questionObj.getJSONArray("incorrect_answers");
                 String[] inc = new String[st.length()];
-                for (int j = 0; j < st.length(); j++)
-                { inc[j] = st.getString(j).replaceAll("&quot;","\"").replaceAll("&#039;","'");
+                for (int j = 0; j < st.length(); j++) {
+                    inc[j] = st.getString(j).replaceAll("&quot;", "\"").replaceAll("&#039;", "'");
 
-                    Log.e("Inc",inc[j]);}
+                    //  Log.e("Inc",inc[j]);
+                }
 
-                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), 12, questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
+                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), questionObj.getString("category"), questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
                 questions.add(question);
 
             }

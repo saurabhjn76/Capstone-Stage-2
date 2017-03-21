@@ -32,22 +32,25 @@ public class ResultActivity extends AppCompatActivity {
         TextView result_score= (TextView) findViewById(R.id.resultText);
         Button reviewQuestion = (Button) findViewById(R.id.review);
         mdb = new ScoresDB();
+        int scored=0;
         contentResolver= getContentResolver();
         Button homeButton =(Button) findViewById(R.id.Choose);
         toolbar.setTitle("Result");
         Intent intent=getIntent();
+        String level =intent.getStringExtra("LEVEL");
+        String category = intent.getStringExtra("CATEGORY");
         if(intent.getIntExtra("SCORE",-1)==-1){
             Toast.makeText(ResultActivity.this,"Error Occured,Sorry for inconvenience",Toast.LENGTH_SHORT).show();
             Intent newIntet= new Intent(ResultActivity.this,MainActivity.class);
             startActivity(newIntet);
         }
         else{
-            int score= intent.getIntExtra("SCORE",-1);
-            result_score.setText(score*5+"%");
+             scored= intent.getIntExtra("SCORE",-1);
+            result_score.setText(scored*5+"%");
             int animationDuration = 2500; // 2500ms = 2,5s
-            circularProgressBar.setProgressWithAnimation(score*5, animationDuration);
+            circularProgressBar.setProgressWithAnimation(scored*5, animationDuration);
         }
-        Score score = new Score(2,"GK",16,"23-07-2017","Difficult");
+        Score score = new Score(4,category,scored*5,"25-07-2017",level);
        mdb.addScore(contentResolver,score);
         Log.e("Score Added","Move to database");
 
