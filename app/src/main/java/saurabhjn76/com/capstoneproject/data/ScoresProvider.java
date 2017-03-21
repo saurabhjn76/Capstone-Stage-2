@@ -16,7 +16,7 @@ public class ScoresProvider extends ContentProvider {
     private static final int SCORE_LIST = 1;
     static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        sUriMatcher.addURI(ScoreContract.AUTHORITY, "movies", SCORE_LIST);
+        sUriMatcher.addURI(ScoreContract.AUTHORITY, "scores", SCORE_LIST);
     }
     public ScoresProvider() {
     }

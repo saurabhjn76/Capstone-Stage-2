@@ -86,7 +86,7 @@ public class ProfileActivity extends AppCompatActivity implements LoaderManager.
         return new CursorLoader(this,
                 ScoreContract.CONTENT_URI,
                 ScoreContract.ScoreEntry.SCORE_COLUMNS,
-                null, null, ScoreContract.ScoreEntry.COLUMN_ID);
+                null, null, null);
     }
 
     @Override

@@ -47,7 +47,7 @@ public class ResultActivity extends AppCompatActivity {
             int animationDuration = 2500; // 2500ms = 2,5s
             circularProgressBar.setProgressWithAnimation(score*5, animationDuration);
         }
-        Score score = new Score(1,"Sports",12,"22-07-2017","medium");
+        Score score = new Score(2,"GK",16,"23-07-2017","Difficult");
        mdb.addScore(contentResolver,score);
         Log.e("Score Added","Move to database");
 

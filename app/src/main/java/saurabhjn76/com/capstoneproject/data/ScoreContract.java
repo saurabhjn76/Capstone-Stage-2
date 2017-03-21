@@ -27,7 +27,7 @@ public class ScoreContract {
         public static final int POSITION_SCORE=3;
         public static final int POSITION_DATE=4;
         public static final String[] SCORE_COLUMNS = {
-                _ID,
+                COLUMN_ID,
                 COLUMN_NAME,
                 COLUMN_LEVEL,
                 COLUMN_SCORE,
