@@ -296,7 +296,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                        button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         QuestionsActivity.correct_ans++;
                         Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                     }
@@ -306,7 +306,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
@@ -314,7 +314,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
@@ -322,7 +322,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button1.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });  break;
                 case 1:button1.setOnClickListener(new View.OnClickListener() {
@@ -330,14 +330,14 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                         button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                        button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                             QuestionsActivity.correct_ans++;
                             Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
@@ -347,7 +347,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
@@ -355,14 +355,14 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });  break;
                 case 2: button1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
-                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                        button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                     }
                 });
@@ -371,14 +371,14 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                             QuestionsActivity.correct_ans++;
                             Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
@@ -387,7 +387,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
-                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
                         }
                     });  break;
@@ -396,7 +396,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                     public void onClick(View v) {
                         button1.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                         button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                        button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                        button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                     }
                 });
                     button2.setOnClickListener(new View.OnClickListener() {
@@ -404,7 +404,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button2.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button1.setClickable(false); button3.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button3.setOnClickListener(new View.OnClickListener() {
@@ -412,14 +412,14 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                         public void onClick(View v) {
                             button3.setBackground(getResources().getDrawable(R.drawable.my_button_incorrect));
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button1.setClickable(false); button4.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                         }
                     });
                     button4.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             button4.setBackground(getResources().getDrawable(R.drawable.my_button_correct));
-                            button2.setClickable(false); button3.setClickable(false); button1.setClickable(false);
+                            button1.setClickable(false);  button2.setClickable(false); button3.setClickable(false); button4.setClickable(false);
                             QuestionsActivity.correct_ans++;
                             Toast.makeText(getContext(),QuestionsActivity.correct_ans+"",Toast.LENGTH_SHORT).show();
                         }
