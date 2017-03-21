@@ -51,15 +51,20 @@
         <activity android:name=".ui.LoginActivity" />
         <activity android:name=".ui.ResetPasswordActivity" />
 
-        <receiver android:name=".Widget.Widget" >
+        <!-- Widget Receiver -->
+        <receiver android:name=".Widget.WidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_info" />
+                android:resource="@xml/widget_provider" />
         </receiver>
+        <!-- Widget service -->
+        <service
+            android:name=".Widget.WidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity android:name=".ui.ProfileActivity" />
         <activity android:name=".ui.LeaderBoardActivity" />

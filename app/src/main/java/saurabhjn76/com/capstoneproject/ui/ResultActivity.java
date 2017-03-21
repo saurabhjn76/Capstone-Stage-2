@@ -54,7 +54,7 @@ public class ResultActivity extends AppCompatActivity {
             circularProgressBar.setProgressWithAnimation(scored*5, animationDuration);
         }
         String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        
+
         Score score = new Score(mdb.getCount(contentResolver),category,scored*5,date,level);
        mdb.addScore(contentResolver,score);
         Log.e("Score Added","Move to database");
