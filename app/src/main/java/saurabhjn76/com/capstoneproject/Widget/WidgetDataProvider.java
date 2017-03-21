@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService.RemoteViewsFactory;
 
@@ -45,6 +46,14 @@ class WidgetDataProvider implements RemoteViewsFactory {
                 android.R.layout.simple_list_item_1);
         mView.setTextViewText(android.R.id.text1, (CharSequence) mCollections.get(position));
         mView.setTextColor(android.R.id.text1, Color.BLACK);
+
+        final Intent fillInIntent = new Intent();
+        fillInIntent.setAction(WidgetProvider.ACTION_TOAST);
+        final Bundle bundle = new Bundle();
+        bundle.putString(WidgetProvider.EXTRA_STRING,
+                (String) mCollections.get(position));
+        fillInIntent.putExtras(bundle);
+        mView.setOnClickFillInIntent(android.R.id.text1, fillInIntent);
         return mView;
     }
 

@@ -4,20 +4,27 @@ package saurabhjn76.com.capstoneproject.Widget;
  * Created by saurabh on 22/3/17.
  */
 import android.annotation.SuppressLint;
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import saurabhjn76.com.capstoneproject.R;
 
 
 public class WidgetProvider extends AppWidgetProvider {
-
+    public static final String ACTION_TOAST = "saurabhjn76.com.capstoneproject.Widgets.ACTION_TOAST";
+    public static final String EXTRA_STRING = "saurabhjn76.com.capstoneproject.Widgets.EXTRA_STRING";
     @Override
     public void onReceive(Context context, Intent intent) {
+        if (intent.getAction().equals(ACTION_TOAST)) {
+            String item = intent.getExtras().getString(EXTRA_STRING);
+            Toast.makeText(context, item, Toast.LENGTH_LONG).show();
+        }
         super.onReceive(context, intent);
     }
 
@@ -26,6 +33,18 @@ public class WidgetProvider extends AppWidgetProvider {
                          int[] appWidgetIds) {
         for (int widgetId : appWidgetIds) {
             RemoteViews mView = initViews(context, appWidgetManager, widgetId);
+
+            // Adding collection list item handler
+            final Intent onItemClick = new Intent(context, WidgetProvider.class);
+            onItemClick.setAction(ACTION_TOAST);
+            onItemClick.setData(Uri.parse(onItemClick
+                    .toUri(Intent.URI_INTENT_SCHEME)));
+            final PendingIntent onClickPendingIntent = PendingIntent
+                    .getBroadcast(context, 0, onItemClick,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
+            mView.setPendingIntentTemplate(R.id.widgetCollectionList,
+                    onClickPendingIntent);
+
             appWidgetManager.updateAppWidget(widgetId, mView);
         }
 
