@@ -51,4 +51,9 @@ public class ScoresDB {
         }
         return scores;
     }
+    public int getCount(ContentResolver contentResolver){
+        Uri uri = Uri.parse(AUTHORITY_Uri + "/scores");
+        Cursor cursor = contentResolver.query(uri, null, null, null, null, null);
+       return cursor.getCount();
+    }
 }

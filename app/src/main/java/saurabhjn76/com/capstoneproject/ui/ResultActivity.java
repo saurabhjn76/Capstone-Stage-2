@@ -15,6 +15,9 @@ import android.widget.Toast;
 
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import saurabhjn76.com.capstoneproject.Models.Score;
 import saurabhjn76.com.capstoneproject.R;
 import saurabhjn76.com.capstoneproject.data.ScoresDB;
@@ -50,7 +53,9 @@ public class ResultActivity extends AppCompatActivity {
             int animationDuration = 2500; // 2500ms = 2,5s
             circularProgressBar.setProgressWithAnimation(scored*5, animationDuration);
         }
-        Score score = new Score(4,category,scored*5,"25-07-2017",level);
+        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        
+        Score score = new Score(mdb.getCount(contentResolver),category,scored*5,date,level);
        mdb.addScore(contentResolver,score);
         Log.e("Score Added","Move to database");
 
