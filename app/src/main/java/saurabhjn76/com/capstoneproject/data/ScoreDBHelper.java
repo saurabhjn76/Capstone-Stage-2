@@ -24,7 +24,7 @@ public class ScoreDBHelper extends SQLiteOpenHelper {
                 ScoreContract.ScoreEntry.COLUMN_NAME + " TEXT NOT NULL, " +
                 ScoreContract.ScoreEntry.COLUMN_LEVEL + " TEXT NOT NULL, " +
                 ScoreContract.ScoreEntry.COLUMN_SCORE + " INTEGER NOT NULL, " +
-                ScoreContract.ScoreEntry.COLUMN_DATE + " TEXT NOT NULL, " +
+                ScoreContract.ScoreEntry.COLUMN_DATE + " TEXT NOT NULL" +
                 ")";
         Log.d("TABLE", "creating table " + CREATE_TABLE);
         sqLiteDatabase.execSQL(CREATE_TABLE);

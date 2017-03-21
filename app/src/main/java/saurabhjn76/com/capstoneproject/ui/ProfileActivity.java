@@ -1,8 +1,10 @@
 package saurabhjn76.com.capstoneproject.ui;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,6 +24,8 @@ public class ProfileActivity extends AppCompatActivity {
     private FirebaseDatabase mFirebaseInstance;
     private TextView name,email;
     String userId ;
+    ListView lv;
+    Context context;
     private static final String TAG = ProfileActivity.class.getSimpleName();
 
     @Override
@@ -30,6 +34,8 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         auth = FirebaseAuth.getInstance();
         mFirebaseInstance = FirebaseDatabase.getInstance();
+        context=this;
+        lv=(ListView) findViewById(R.id.listView);
 
         // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
