@@ -27,7 +27,6 @@ public class LeaderBoardScoreAdapter extends BaseAdapter {
 
     public LeaderBoardScoreAdapter(ArrayList<LeaderBoardScores> lScores, LeaderBoardActivity leaderBoardActivity) {
         this.lScores = new ArrayList<>(lScores);
-        Collections.reverse(lScores);
         this.mContext=leaderBoardActivity;
         inflater = ( LayoutInflater )mContext.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -49,7 +48,7 @@ public class LeaderBoardScoreAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return position;
+        return lScores.get(position);
     }
 
     @Override
@@ -68,7 +67,7 @@ public class LeaderBoardScoreAdapter extends BaseAdapter {
         holder.level=(TextView) rowView.findViewById(R.id.level);
         holder.score=(TextView) rowView.findViewById(R.id.score);
 
-        holder.rank.setText(position+"");
+        holder.rank.setText(position+1+"");
         holder.user_name.setText(lScores.get(position).getUser_name());
         holder.name.setText(lScores.get(position).getName());
         holder.score.setText(lScores.get(position).getScores()+"");
