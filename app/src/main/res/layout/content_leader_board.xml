@@ -11,5 +11,67 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="saurabhjn76.com.capstoneproject.ui.LeaderBoardActivity"
     tools:showIn="@layout/activity_leader_board">
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:contentDescription="@string/leaderboard_desc"
+        android:text="@string/leaderboard_desc" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/label">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/labelContainer"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/rank"
+                android:contentDescription="@string/rank"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/name_desc"
+                android:contentDescription="@string/name_desc"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/category_text"
+                android:text="@string/category_text"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/level_text"
+                android:text="@string/level_text"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:contentDescription="@string/score_text"
+                android:text="@string/score_text"/>
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/leaderBoard_desc"
+            android:layout_below="@id/label">
+
+        </ListView>
+
+    </LinearLayout>
+
 
 </RelativeLayout>

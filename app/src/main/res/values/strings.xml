@@ -110,6 +110,11 @@
     <string name="dummy_email">saurabhjn76@gmail.com</string>
     <string name="title_activity_leader_board">LeaderBoardActivity</string>
     <string name="loading">Loading..</string>
+    <string name="leaderBoard_desc">LeaderBoard scores</string>
+    <string name="leaderboard_desc">LeaderBoard</string>
+    <string name="name_desc">Name</string>
+    <string name="rank">Rank</string>
+    <string name="username">Username</string>
 
     <!-- Content Description-->
 
