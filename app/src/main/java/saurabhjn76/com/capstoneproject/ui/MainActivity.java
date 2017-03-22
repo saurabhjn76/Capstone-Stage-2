@@ -210,6 +210,10 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
            Intent intent = new Intent(MainActivity.this, LeaderBoardActivity.class);
             startActivity(intent);
         }
+        else if(id==R.id.about){
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+        }
         else if (id == R.id.nav_logout) {
           auth.signOut();
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
