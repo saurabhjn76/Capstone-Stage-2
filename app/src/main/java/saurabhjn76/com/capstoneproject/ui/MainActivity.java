@@ -1,6 +1,8 @@
 package saurabhjn76.com.capstoneproject.ui;
 
 import android.app.Fragment;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.ConnectivityManager;
@@ -37,6 +39,7 @@ import java.util.ArrayList;
 
 import saurabhjn76.com.capstoneproject.Adapter.ImageAdapter;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.Widget.WidgetProvider;
 import saurabhjn76.com.capstoneproject.data.ScoresDB;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
@@ -218,6 +221,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         else if (id == R.id.nav_logout) {
           auth.signOut();
             mdb.removeAllScore(getContentResolver());
+            Intent wIntent = new Intent(this, WidgetProvider.class);
+            wIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+            int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
+            wIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+            sendBroadcast(wIntent);
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }

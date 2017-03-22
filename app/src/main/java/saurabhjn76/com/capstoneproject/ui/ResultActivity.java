@@ -81,7 +81,7 @@ public class ResultActivity extends AppCompatActivity {
         Intent wIntent = new Intent(this, WidgetProvider.class);
         wIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
-        intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
+        wIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         sendBroadcast(wIntent);
         Log.e("Score Added","Move to database");
         LeaderBoardScores scores = new LeaderBoardScores(userId,auth.getCurrentUser().getDisplayName(),category,scored*5,date,level);
