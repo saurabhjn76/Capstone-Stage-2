@@ -27,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -111,6 +112,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView =  navigationView.getHeaderView(0);
+        TextView name_drawer= (TextView) hView.findViewById(R.id.name_draw);
+        name_drawer.setText(user.getDisplayName());
+        TextView email_drawer = (TextView) hView.findViewById(R.id.email_draw);
+        email_drawer.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
 
     }

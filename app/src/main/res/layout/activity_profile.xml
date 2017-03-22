@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/name_text"
+        android:text="@string/loading"
         android:contentDescription="@string/name_des"
         android:id="@+id/name"
         android:layout_centerHorizontal="true" />
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/email_text"
+        android:text="@string/loading"
         android:id="@+id/email"
         android:contentDescription="@string/email_desc"
         android:layout_below="@+id/name"

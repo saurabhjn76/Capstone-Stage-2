@@ -109,6 +109,7 @@
     <string name="dummy_name_text">Saurabh Jain</string>
     <string name="dummy_email">saurabhjn76@gmail.com</string>
     <string name="title_activity_leader_board">LeaderBoardActivity</string>
+    <string name="loading">Loading..</string>
 
     <!-- Content Description-->
 
