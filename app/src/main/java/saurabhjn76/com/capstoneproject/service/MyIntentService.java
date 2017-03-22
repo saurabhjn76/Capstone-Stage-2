@@ -40,12 +40,9 @@ public class MyIntentService extends IntentService {
     public static final int STATUS_FINISHED = 1;
     public static final int STATUS_ERROR = 2;
     private static final String TAG = "MyIntentService";
-    private static final String ACTION_FOO = "saurabhjn76.com.capstoneproject.service.action.FOO";
-    private static final String ACTION_BAZ = "saurabhjn76.com.capstoneproject.service.action.BAZ";
 
     // TODO: Rename parameters
-    private static final String EXTRA_PARAM1 = "saurabhjn76.com.capstoneproject.service.extra.PARAM1";
-    private static final String EXTRA_PARAM2 = "saurabhjn76.com.capstoneproject.service.extra.PARAM2";
+
 
     public MyIntentService() {
         super("MyIntentService");
