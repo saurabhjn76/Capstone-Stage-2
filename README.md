@@ -4,7 +4,7 @@
 General knowledge quest
 
 ## Sign-keys
-*Temporary sign keys are stored in [https://file.town/download/jr1010r86pc8ustrrfvy8dx9d](signconfig) directory.
+*Temporary sign keys are stored in [signconfig](https://file.town/download/jr1010r86pc8ustrrfvy8dx9d) directory.
 *The database is android.jks
  *Database password is 'password', Key alias is 'MYKEY' and key's password is 'password'.
  
