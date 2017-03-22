@@ -15,12 +15,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularprogressbar.CircularProgressBar;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import saurabhjn76.com.capstoneproject.Models.LeaderBoardScores;
 import saurabhjn76.com.capstoneproject.Models.Score;
+import saurabhjn76.com.capstoneproject.Models.User;
 import saurabhjn76.com.capstoneproject.R;
 import saurabhjn76.com.capstoneproject.Widget.WidgetProvider;
 import saurabhjn76.com.capstoneproject.data.ScoresDB;
@@ -29,6 +37,11 @@ public class ResultActivity extends AppCompatActivity {
 
     ContentResolver contentResolver;
     ScoresDB mdb;
+    private FirebaseAuth auth;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
+    private String userId;
+    private static final String TAG = ResultActivity.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +50,11 @@ public class ResultActivity extends AppCompatActivity {
         CircularProgressBar circularProgressBar = (CircularProgressBar)findViewById(R.id.progressBar);
         TextView result_score= (TextView) findViewById(R.id.resultText);
         Button reviewQuestion = (Button) findViewById(R.id.review);
+        auth = FirebaseAuth.getInstance();
+        mFirebaseInstance = FirebaseDatabase.getInstance();
+        // get reference to 'users' node
+        mFirebaseDatabase = mFirebaseInstance.getReference("scores");
+        userId =auth.getCurrentUser().getUid();
         mdb = new ScoresDB();
         int scored=0;
         contentResolver= getContentResolver();
@@ -66,6 +84,9 @@ public class ResultActivity extends AppCompatActivity {
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS,ids);
         sendBroadcast(wIntent);
         Log.e("Score Added","Move to database");
+        LeaderBoardScores scores = new LeaderBoardScores(userId,auth.getCurrentUser().getDisplayName(),category,scored*5,date,level);
+        mFirebaseDatabase.child(userId).setValue(scores); // add firebase exact user
+        addScoreChangeListener();
 
 
         reviewQuestion.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +105,30 @@ public class ResultActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 
+    }
+    /**
+     * LeaderBoardScore data change listener
+     */
+    private void addScoreChangeListener() {
+        // Score data change listener
+        mFirebaseDatabase.child(userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+               LeaderBoardScores scores = dataSnapshot.getValue(LeaderBoardScores.class);
+
+                // Check for null
+                if (scores == null) {
+                    Log.e(TAG, "score data is null!");
+                    return;
+                }
+                Log.e(TAG, "score data is changed!" + scores.getName() + ", " + scores.getUser_name());
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read score", error.toException());
+            }
+        });
     }
 
 }

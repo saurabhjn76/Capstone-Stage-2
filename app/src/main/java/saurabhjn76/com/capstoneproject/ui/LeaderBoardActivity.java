@@ -38,7 +38,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("scores");
         userId =auth.getCurrentUser().getUid();
       //  User user = new User(name, email);
-        mFirebaseDatabase.child(userId).setValue("");
+        mFirebaseDatabase.child(userId).setValue(""); // add firebase exact user
         addScoreChangeListener();
 
 
