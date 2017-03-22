@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingStart="@dimen/activity_horizontal_margin"
+    android:focusable="true"
     android:paddingEnd="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".ui.ProfileActivity">
@@ -14,6 +15,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/loading"
+        android:focusable="true"
+        android:nextFocusDown="@+id/email"
         android:contentDescription="@string/name_des"
         android:id="@+id/name"
         android:layout_centerHorizontal="true" />
@@ -23,6 +26,9 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/loading"
+        android:focusable="true"
+        android:nextFocusUp="@id/name"
+        android:nextFocusDown="@+id/label"
         android:id="@+id/email"
         android:contentDescription="@string/email_desc"
         android:layout_below="@+id/name"
@@ -33,6 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
+        android:focusable="true"
+        android:nextFocusUp="@id/email"
         android:layout_below="@id/email"
         android:textStyle="bold"
         android:contentDescription="@string/performance"
@@ -42,40 +50,61 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:focusable="true"
             android:layout_below="@id/label">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
         android:id="@+id/labelContainer"
         >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:focusable="true"
+            android:id="@+id/dates"
+            android:nextFocusDown="@+id/listView"
+            android:nextFocusRight="@id/categ"
             android:text="@string/date_text"
             android:contentDescription="@string/date_text"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:focusable="true"
+            android:id="@+id/categ"
+            android:nextFocusDown="@+id/listView"
+            android:nextFocusLeft="@id/dates"
+            android:nextFocusRight="@id/levelss"
             android:contentDescription="@string/category_text"
             android:text="@string/category_text"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:focusable="true"
+            android:nextFocusRight="@id/scr"
+            android:id="@+id/levelss"
+            android:nextFocusDown="@+id/listView"
+            android:nextFocusLeft="@id/categ"
             android:contentDescription="@string/level_text"
             android:text="@string/level_text"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:id="@+id/scr"
+            android:nextFocusDown="@+id/listView"
+            android:nextFocusLeft="@id/levelss"
+            android:focusable="true"
             android:contentDescription="@string/score_text"
             android:text="@string/score_text"/>
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView"
+        android:focusable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@string/score_list_desc"

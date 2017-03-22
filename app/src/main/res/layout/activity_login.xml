@@ -4,36 +4,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
     android:fitsSystemWindows="true"
     tools:context=".ui.LoginActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:focusable="true"
         android:background="@color/colorPrimary"
         android:gravity="center"
+        android:nextFocusDown="@+id/imageView"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
 
         <ImageView
             android:layout_width="@dimen/logo_w_h"
+            android:focusable="true"
+            android:id="@+id/imgview"
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
+            android:nextFocusDown="@+id/email"
             android:contentDescription="@string/Login_message"
             android:src="@mipmap/ic_launcher_app" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
+            android:focusable="true"
             android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
+                android:focusable="true"
+                android:nextFocusUp="@id/imgview"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/hint_email"
+                android:nextFocusDown="@+id/password"
                 android:inputType="textEmailAddress"
                 android:contentDescription="@string/enter_email"
                 android:textColor="@android:color/white"
@@ -42,14 +52,18 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
+            android:focusable="true"
             android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/password"
+                android:focusable="true"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:hint="@string/hint_password"
+                android:nextFocusDown="@+id/btn_login"
+                android:nextFocusUp="@id/email"
                 android:inputType="textPassword"
                 android:contentDescription="@string/enter_password"
                 android:textColor="@android:color/white"
@@ -60,9 +74,12 @@
 
         <Button
             android:id="@+id/btn_login"
+            android:focusable="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
+            android:nextFocusDown="@+id/btn_reset_password"
+            android:nextFocusUp="@id/btn_login"
             android:background="@color/colorAccent"
             android:text="@string/btn_login"
             android:contentDescription="@string/login_button"
@@ -71,6 +88,9 @@
         <Button
             android:id="@+id/btn_reset_password"
             android:layout_width="fill_parent"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_signup"
+            android:nextFocusUp="@id/btn_login"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
@@ -86,6 +106,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
+            android:focusable="true"
+            android:nextFocusUp="@id/btn_reset_password"
             android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
