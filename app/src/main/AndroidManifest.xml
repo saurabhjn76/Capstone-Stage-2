@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="saurabhjn76.com.capstoneproject" >
+    package="saurabhjn76.com.capstoneproject">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Network State Permissions -->
@@ -13,12 +13,12 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ui.WelcomeActivity" >
+        <activity android:name=".ui.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
             android:name=".ui.DetailActivity"
             android:label="@string/title_activity_detail"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="saurabhjn76.com.capstoneproject.ui.MainActivity" />
@@ -38,7 +38,7 @@
             android:name=".ui.QuestionsActivity"
             android:label="@string/title_activity_questions"
             android:parentActivityName=".ui.MainActivity"
-            android:theme="@style/AppTheme" >
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="saurabhjn76.com.capstoneproject.ui.MainActivity" />
@@ -52,7 +52,7 @@
         <activity android:name=".ui.ResetPasswordActivity" />
 
         <!-- Widget Receiver -->
-        <receiver android:name=".Widget.WidgetProvider" >
+        <receiver android:name=".Widget.WidgetProvider">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -67,7 +67,6 @@
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <activity android:name=".ui.ProfileActivity" />
-        <activity android:name=".ui.LeaderBoardActivity" />
 
         <service
             android:name=".service.MyIntentService"
@@ -77,8 +76,17 @@
             android:name=".data.ScoresProvider"
             android:authorities="saurabhjn76.com.capstoneproject"
             android:enabled="true"
-            android:exported="true" >
-        </provider>
+            android:exported="true"></provider>
+
+        <activity
+            android:name=".ui.LeaderBoardActivity"
+            android:label="@string/title_activity_leader_board"
+            android:parentActivityName=".ui.MainActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="saurabhjn76.com.capstoneproject.ui.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
