@@ -15,8 +15,8 @@
             android:layout_height="wrap_content"
             android:background="#aaDEDFDE"
             android:orientation="horizontal"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp" >
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp" >
 
 
             <LinearLayout
@@ -26,7 +26,7 @@
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:paddingBottom="4dp"
-                android:paddingLeft="8dp"
+                android:paddingStart="8dp"
                 android:paddingTop="4dp" >
 
                 <TextView
@@ -47,7 +47,7 @@
                     android:id="@+id/txvWidgetTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/date_text"
                     android:contentDescription="@string/date_text"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -56,7 +56,7 @@
                     android:id="@+id/txvWidgetTitle1"
                     android:layout_width="match_parent"
                     android:contentDescription="@string/category_text"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_height="wrap_content"
 
                     android:text="@string/category_text"
@@ -66,7 +66,7 @@
                     android:id="@+id/txvWidgetTitle2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:text="@string/level_text"
                     android:contentDescription="@string/level_text"
                     android:textAppearance="?android:attr/textAppearanceSmall"
@@ -75,7 +75,7 @@
                     android:id="@+id/txvWidgetTitle3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:text="@string/score_text"
                     android:contentDescription="@string/score_desc"
                     android:textAppearance="?android:attr/textAppearanceSmall"

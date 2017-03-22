@@ -5,7 +5,7 @@
     android:orientation="horizontal" >
     <TextView
         android:id="@+id/date"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dummy_date"
@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:id="@+id/name"
         android:contentDescription="@string/name_des"
         android:text="@string/dummy_cat1"/>
@@ -22,14 +22,14 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:id="@+id/level"
         android:contentDescription="@string/level_text"
         android:text="@string/dummy_level"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:id="@+id/score"
         android:contentDescription="@string/score_desc"
         android:text="@string/dummy_score1"/>
