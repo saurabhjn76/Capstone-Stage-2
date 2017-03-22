@@ -102,8 +102,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
         }
 
-
-
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

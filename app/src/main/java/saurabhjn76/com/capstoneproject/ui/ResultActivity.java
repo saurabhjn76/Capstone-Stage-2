@@ -85,7 +85,7 @@ public class ResultActivity extends AppCompatActivity {
         sendBroadcast(wIntent);
         Log.e("Score Added","Move to database");
         LeaderBoardScores scores = new LeaderBoardScores(userId,auth.getCurrentUser().getDisplayName(),category,scored*5,date,level);
-        mFirebaseDatabase.child(userId).setValue(scores); // add firebase exact user
+        mFirebaseDatabase.push().setValue(scores); // add firebase exact user
         addScoreChangeListener();
 
 
