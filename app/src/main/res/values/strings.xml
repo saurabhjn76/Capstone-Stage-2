@@ -62,4 +62,53 @@
     <string name="forgot_password_msg">We just need your registered Email Id to sent you password reset instructions.</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
+    <string name="Login_message">Click on text field below to login</string>
+    <string name="enter_email">Enter your email</string>
+    <string name="enter_password">Enter your password</string>
+    <string name="login_button">Click to login</string>
+    <string name="forgot_pwd">Click if you forgot your password</string>
+    <string name="register_btn">Click to register</string>
+    <string name="check_cred">Checking credentials</string>
+    <string name="name_des">Your name</string>
+    <string name="name_text">Name</string>
+    <string name="email_text">Email</string>
+    <string name="email_desc">your email id</string>
+    <string name="performance">Past Scores</string>
+    <string name="date_text">Date</string>
+    <string name="category_text">Category</string>
+    <string name="level_text">Level</string>
+    <string name="score_text">Score(%)</string>
+    <string name="score_list_desc">list showing your past scores and dates</string>
+    <string name="forgot_password_desc">Enter registered email and click to get password resetting instructions</string>
+    <string name="register_desc">enter details to register</string>
+    <string name="score">Score</string>
+    <string name="progress_desc">your progress</string>
+    <string name="score_desc">your score</string>
+    <string name="dummy_score">63%</string>
+    <string name="question_review">Review Questions</string>
+    <string name="choose_cat">Choose Category</string>
+    <string name="image_desc_cat">Image showing category</string>
+    <string name="dummy_cat">Wildlife</string>
+    <string name="choose_cat_desc">Click to choose this Category</string>
+    <string name="dummy_date">23-11-2017</string>
+    <string name="dummy_cat1">Sports</string>
+    <string name="dummy_level">difficult</string>
+    <string name="dummy_score1">42%</string>
+    <string name="choice">Select difficulty Level:</string>
+    <string name="easy">Easy</string>
+    <string name="moderate">Moderate</string>
+    <string name="hard">Hard</string>
+    <string name="start_quiz">Start Quiz</string>
+    <string name="result_text">RESULTS</string>
+    <string name="dummy_option">Windows XP</string>
+    <string name="dummy_option1">Windows 7</string>
+    <string name="dummy_option2">Windows Vistas</string>
+    <string name="dummy_option4">None of the above</string>
+    <string name="option_desc">Option</string>
+    <string name="profile_desc">Profile_desc</string>
+    <string name="dummy_name_text">Saurabh Jain</string>
+    <string name="dummy_email">saurabhjn76@gmail.com</string>
+
+    <!-- Content Description-->
+
 </resources>

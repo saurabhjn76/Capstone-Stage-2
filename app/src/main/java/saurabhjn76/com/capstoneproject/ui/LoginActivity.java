@@ -1,5 +1,5 @@
 package saurabhjn76.com.capstoneproject.ui;
-
+// thanks http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;

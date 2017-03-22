@@ -8,25 +8,29 @@
         android:layout_marginLeft="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="23-11-2017" />
+        android:text="@string/dummy_date"
+        android:contentDescription="@string/date_text"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:id="@+id/name"
-        android:text="Sports"/>
+        android:contentDescription="@string/name_des"
+        android:text="@string/dummy_cat1"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:id="@+id/level"
-        android:text="difficult"/>
+        android:contentDescription="@string/level_text"
+        android:text="@string/dummy_level"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:id="@+id/score"
-        android:text="42%"/>
+        android:contentDescription="@string/score_desc"
+        android:text="@string/dummy_score1"/>
 </LinearLayout>

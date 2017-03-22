@@ -16,6 +16,7 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
+        android:contentDescription="@string/image_desc_cat"
         android:layout_height="260dp"
 
         android:scaleType="centerCrop"
@@ -30,7 +31,8 @@
         android:textColor="#FFFFFF"
         android:layout_alignBottom="@id/imageView"
         android:layout_marginBottom="0dp"
-        android:text="Wildlife"
+        android:contentDescription="@string/choose_cat_desc"
+        android:text="@string/dummy_cat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

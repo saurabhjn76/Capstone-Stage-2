@@ -14,8 +14,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Score"
+        android:text="@string/score"
         android:textSize="40sp"
+        android:contentDescription="@string/score"
         android:textColor="#F44336"
         android:gravity="center"
         android:id="@+id/score"/>
@@ -24,6 +25,7 @@
         android:layout_below="@id/score"
         android:foregroundGravity="center"
         android:id="@+id/progressBar"
+        android:contentDescription="@string/progress_desc"
         android:layout_marginTop="20dp"
         android:layout_height="300dp"
         android:layout_marginLeft="30dp"
@@ -36,8 +38,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="63%"
+        android:text="@string/dummy_score"
         android:id="@+id/resultText"
+        android:contentDescription="@string/score_desc"
         android:textSize="64sp"
         android:textColor="#F44336"
         android:gravity="center"
@@ -53,16 +56,18 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Review Questions"
+            android:text="@string/question_review"
             android:id="@+id/review"
             android:textColor="#FFFFFF"
+            android:contentDescription="@string/question_review"
             android:padding="10dp"
             android:layout_gravity="left"
             android:background="#F44336"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choose Category"
+            android:text="@string/choose_cat"
+            android:contentDescription="@string/choose_cat"
             android:textColor="#FFFFFF"
             android:id="@+id/Choose"
             android:padding="10dp"
