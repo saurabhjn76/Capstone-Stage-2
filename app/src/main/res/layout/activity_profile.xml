@@ -65,7 +65,7 @@
             android:focusable="true"
             android:id="@+id/dates"
             android:nextFocusDown="@+id/listView"
-            android:nextFocusRight="@id/categ"
+            android:nextFocusRight="@+id/categ"
             android:text="@string/date_text"
             android:contentDescription="@string/date_text"/>
         <TextView
@@ -76,7 +76,7 @@
             android:id="@+id/categ"
             android:nextFocusDown="@+id/listView"
             android:nextFocusLeft="@id/dates"
-            android:nextFocusRight="@id/levelss"
+            android:nextFocusRight="@+id/levelss"
             android:contentDescription="@string/category_text"
             android:text="@string/category_text"/>
         <TextView
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:focusable="true"
-            android:nextFocusRight="@id/scr"
+            android:nextFocusRight="@+id/scr"
             android:id="@+id/levelss"
             android:nextFocusDown="@+id/listView"
             android:nextFocusLeft="@id/categ"

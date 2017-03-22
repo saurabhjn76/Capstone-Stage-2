@@ -1,14 +1,17 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:focusable="true"
     android:layout_height="wrap_content">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:focusable="true"
         android:orientation="vertical">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
+        android:focusable="true"
         android:contentDescription="@string/image_desc_cat"
         android:id="@+id/detailImage"
         android:src="@drawable/improve"/>
@@ -19,6 +22,7 @@
         android:textSize="40sp"
         android:id="@+id/detailHeading"
         android:layout_marginTop="4dp"
+        android:focusable="true"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:text="@string/dummy_cat1"
@@ -27,21 +31,26 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_marginTop="4dp"
 
             android:text="@string/choice"
             android:contentDescription="@string/choice"
             android:layout_gravity="center"
+
             android:gravity="center"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:gravity="center">
             <RadioGroup
                 android:id="@+id/radiogrp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:focusable="true"
                 android:padding="10dp"
+                android:nextFocusDown="@+id/strq"
                 android:layout_marginTop="10dp"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
@@ -52,6 +61,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:checked="true"
+                    android:nextFocusRight="@+id/moderate"
+                    android:focusable="true"
                     android:backgroundTint="@color/bg_screen2"
                     android:text="@string/easy"
                     android:contentDescription="@string/easy"
@@ -62,6 +73,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
+                    android:focusable="true"
+                    android:nextFocusRight="@+id/hard"
+                    android:nextFocusLeft="@id/easy"
                     android:backgroundTint="@color/bg_screen2"
                     android:text="@string/moderate"
                     android:contentDescription="@string/moderate"
@@ -70,6 +84,9 @@
                 <RadioButton
                     android:id="@+id/hard"
                     android:layout_width="wrap_content"
+                    android:focusable="true"
+                    android:nextFocusLeft="@id/moderate"
+                    android:nextFocusDown="@+id/strq"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/bg_screen2"
                     android:text="@string/hard"
@@ -84,6 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:focusable="true"
+            android:nextFocusUp="@id/radiogrp"
             android:elevation="20dp"
             android:background="@color/bg_screen2"
             android:text="@string/start_quiz"

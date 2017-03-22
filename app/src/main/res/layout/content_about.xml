@@ -22,7 +22,7 @@
         android:focusable="true"
         android:contentDescription="@string/app_nme"
         android:id="@+id/textView"
-        android:nextFocusDown="@id/textView2"
+        android:nextFocusDown="@+id/textView2"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="98dp" />
@@ -35,7 +35,7 @@
         android:text="@string/dev_notes"
         android:id="@+id/textView2"
         android:nextFocusUp="@id/textView"
-        android:nextFocusDown="@id/textView3"
+        android:nextFocusDown="@+id/textView3"
         android:layout_below="@+id/textView"
         android:layout_alignStart="@+id/textView" />
 
