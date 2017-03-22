@@ -30,6 +30,10 @@ public class ScoresDB {
         Uri uri = Uri.parse(AUTHORITY_Uri + "/" + id);
         contentResolver.delete(uri, null, new String[]{id + ""});
     }
+    public void removeAllScore(ContentResolver contentResolver){
+        Uri uri = Uri.parse(AUTHORITY_Uri);
+        contentResolver.delete(uri, null, null);
+    }
 
     public ArrayList<Score> getAllScores(ContentResolver contentResolver){
         Uri uri = Uri.parse(AUTHORITY_Uri + "/scores");

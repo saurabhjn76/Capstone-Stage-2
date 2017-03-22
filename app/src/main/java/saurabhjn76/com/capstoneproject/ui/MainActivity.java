@@ -37,14 +37,15 @@ import java.util.ArrayList;
 
 import saurabhjn76.com.capstoneproject.Adapter.ImageAdapter;
 import saurabhjn76.com.capstoneproject.R;
+import saurabhjn76.com.capstoneproject.data.ScoresDB;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
     public  View v;
     public View s;
-    boolean mTwoPane=true;
     GridView gridView;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    ScoresDB mdb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
-
+        mdb = new ScoresDB();
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -216,6 +217,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         }
         else if (id == R.id.nav_logout) {
           auth.signOut();
+            mdb.removeAllScore(getContentResolver());
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         }
