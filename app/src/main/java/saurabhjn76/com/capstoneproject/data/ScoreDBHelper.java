@@ -3,7 +3,6 @@ package saurabhjn76.com.capstoneproject.data;
 /**
  * Created by saurabh on 21/3/17.
  */
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -14,7 +13,7 @@ public class ScoreDBHelper extends SQLiteOpenHelper {
     static final String DATABASE_NAME = "scores.db";
     static final int DATABASE_VERSION = 1;
 
-    public ScoreDBHelper(Context c) {
+    public ScoreDBHelper(Context c){
         super(c, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

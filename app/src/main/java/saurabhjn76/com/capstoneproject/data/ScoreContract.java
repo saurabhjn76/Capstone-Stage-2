@@ -3,7 +3,6 @@ package saurabhjn76.com.capstoneproject.data;
 /**
  * Created by saurabh on 21/3/17.
  */
-
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -12,7 +11,7 @@ public class ScoreContract {
     public static final String AUTHORITY = "saurabhjn76.com.capstoneproject";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY);
 
-    public ScoreContract() {
+    public ScoreContract(){
     }
 
     public static final class ScoreEntry implements BaseColumns {
@@ -22,11 +21,11 @@ public class ScoreContract {
         public static final String COLUMN_DATE = "quiz_date";
         public static final String COLUMN_SCORE = "score";
         public static final String COLUMN_ID = "id";
-        public static final int POSITION_ID = 0;
-        public static final int POSITION_NAME = 1;
-        public static final int POSITION_LEVEL = 2;
-        public static final int POSITION_SCORE = 3;
-        public static final int POSITION_DATE = 4;
+        public static final int POSITION_ID=0;
+        public static final int POSITION_NAME=1;
+        public static final int POSITION_LEVEL=2;
+        public static final int POSITION_SCORE=3;
+        public static final int POSITION_DATE=4;
         public static final String[] SCORE_COLUMNS = {
                 COLUMN_ID,
                 COLUMN_NAME,
@@ -34,6 +33,7 @@ public class ScoreContract {
                 COLUMN_SCORE,
                 COLUMN_DATE
         };
+
 
 
     }

@@ -5,26 +5,26 @@
         <item
             android:id="@+id/profile"
             android:icon="@drawable/profile"
-            android:title="@string/profile_menu" />
+            android:title="Profile" />
         <item
             android:id="@+id/changeEmail"
-            android:icon="@drawable/question"
-            android:title="@string/question_menu" />
+            android:title="Question"
+            android:icon="@drawable/question"/>
         <item
             android:id="@+id/delete_profile"
             android:icon="@drawable/leaderboard"
-            android:title="@string/leaderboard_menu" />
+            android:title="LeaderBoard" />
         <item
             android:id="@+id/about"
             android:icon="@drawable/about"
-            android:title="@string/about_menu" />
+            android:title="About" />
     </group>
 
     <item android:title="">
         <menu>
             <item
                 android:id="@+id/nav_logout"
-                android:title="@string/logout_menu" />
+                android:title="Logout" />
         </menu>
     </item>
 
