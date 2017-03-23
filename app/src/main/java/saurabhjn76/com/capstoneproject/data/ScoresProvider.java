@@ -10,24 +10,21 @@ import android.net.Uri;
 import android.util.Log;
 
 public class ScoresProvider extends ContentProvider {
-    static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
+    static String LOG_TAG = "Database";
+    ScoreDBHelper DBHelper;
+    SQLiteDatabase database;
     private static final int SCORE_LIST = 1;
-    static final String LOG_TAG = "Database";
-
+    static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
         sUriMatcher.addURI(ScoreContract.AUTHORITY, "scores", SCORE_LIST);
     }
-
-    ScoreDBHelper DBHelper;
-    SQLiteDatabase database;
-
     public ScoresProvider() {
     }
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
         // Implement this to handle requests to delete one or more rows.
-        int count = 0;
+        int count=0;
         count = database.delete(ScoreContract.ScoreEntry.TABLE_NAME, selection, selectionArgs);
         getContext().getContentResolver().notifyChange(uri, null);
         return count;
@@ -39,7 +36,7 @@ public class ScoresProvider extends ContentProvider {
         // TODO: Implement this to handle requests for the MIME type of the data
         // at the given URI.
         return null;
-        // throw new UnsupportedOperationException("Not yet implemented");
+       // throw new UnsupportedOperationException("Not yet implemented");
     }
 
     @Override
@@ -67,7 +64,7 @@ public class ScoresProvider extends ContentProvider {
 
     @Override
     public Cursor query(Uri uri, String[] projection, String selection,
-                        String[] selectionArgs, String sortOrder) {
+            String[] selectionArgs, String sortOrder) {
         // TODO: Implement this to handle query requests from clients.
         Cursor retCursor;
         if (sortOrder == null) sortOrder = ScoreContract.ScoreEntry.COLUMN_ID;
@@ -82,7 +79,7 @@ public class ScoresProvider extends ContentProvider {
 
     @Override
     public int update(Uri uri, ContentValues values, String selection,
-                      String[] selectionArgs) {
+            String[] selectionArgs) {
         // TODO: Implement this to handle requests to update one or more rows.
         throw new UnsupportedOperationException("Not need to be implemented");
     }
