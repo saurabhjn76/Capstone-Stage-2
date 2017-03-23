@@ -121,6 +121,11 @@
     <string name="dev_notes">Developed by-Saurabh Jain</string>
     <string name="dummy_q">Q3)Whistler was the codename of this Microsoft Operating System.</string>
     <string name="qu">question</string>
+    <string name="profile_menu">Profile</string>
+    <string name="question_menu">Question</string>
+    <string name="leaderboard_menu">LeaderBoard</string>
+    <string name="about_menu">About</string>
+    <string name="logout_menu">Logout</string>
 
     <!-- Content Description-->
 
