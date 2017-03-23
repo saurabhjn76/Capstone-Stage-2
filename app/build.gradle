@@ -14,9 +14,9 @@ android {
     signingConfigs {
 
         release {
-            storeFile file("home/saurabh/keystores/android.jks")
+            storeFile file("../keystores/android.jks")
             storePassword "password"
-            keyAlias "MYKEY"
+            keyAlias "MYKEYS"
             keyPassword "password"
         }
     }
