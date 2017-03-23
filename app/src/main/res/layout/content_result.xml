@@ -4,86 +4,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:focusable="true"
-    android:paddingStart="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingEnd="@dimen/activity_horizontal_margin"
+    android:paddingStart="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="saurabhjn76.com.capstoneproject.ui.ResultActivity"
     tools:showIn="@layout/activity_result">
+
     <TextView
+        android:id="@+id/score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/score"
-        android:focusable="true"
-        android:nextFocusDown="@+id/review"
-        android:textSize="40sp"
         android:contentDescription="@string/score"
-        android:textColor="#F44336"
+        android:focusable="true"
         android:gravity="center"
-        android:id="@+id/score"/>
+        android:nextFocusDown="@+id/review"
+        android:text="@string/score"
+        android:textColor="#F44336"
+        android:textSize="40sp" />
+
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
-        android:layout_width="match_parent"
-        android:layout_below="@id/score"
-        android:foregroundGravity="center"
         android:id="@+id/progressBar"
-        android:contentDescription="@string/progress_desc"
-        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_below="@id/score"
         android:layout_marginStart="30dp"
-        app:cpb_progress="0"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/progress_desc"
+        android:foregroundGravity="center"
         android:textAlignment="center"
         app:cpb_background_progressbar_color="#FFCDD2"
         app:cpb_background_progressbar_width="4dp"
+        app:cpb_progress="0"
         app:cpb_progressbar_color="#F44336"
         app:cpb_progressbar_width="10dp" />
+
     <TextView
+        android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/dummy_score"
-        android:id="@+id/resultText"
-        android:contentDescription="@string/score_desc"
-        android:textSize="64sp"
-        android:textColor="#F44336"
-        android:gravity="center"
-        android:layout_marginTop="170dp"
         android:layout_marginStart="130dp"
-        android:foregroundGravity="center"/>
+        android:layout_marginTop="170dp"
+        android:contentDescription="@string/score_desc"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="@string/dummy_score"
+        android:textColor="#F44336"
+        android:textSize="64sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
         android:layout_marginTop="50dp"
         android:focusable="true"
-        android:padding="10dp"
-        android:layout_below="@id/progressBar">
+        android:padding="10dp">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/question_review"
-            android:focusable="true"
-            android:nextFocusUp="@id/score"
-            android:nextFocusRight="@+id/Choose"
             android:id="@+id/review"
-            android:textColor="#FFFFFF"
-            android:contentDescription="@string/question_review"
-            android:padding="10dp"
-            android:layout_gravity="start"
-            android:background="#F44336"/>
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/choose_cat"
+            android:layout_gravity="start"
+            android:background="#F44336"
+            android:contentDescription="@string/question_review"
+            android:focusable="true"
+            android:nextFocusRight="@+id/Choose"
+            android:nextFocusUp="@id/score"
+            android:padding="10dp"
+            android:text="@string/question_review"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/Choose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginStart="30dp"
+            android:background="#F44336"
             android:contentDescription="@string/choose_cat"
-            android:textColor="#FFFFFF"
             android:focusable="true"
             android:nextFocusLeft="@id/review"
             android:nextFocusUp="@id/score"
-            android:id="@+id/Choose"
             android:padding="10dp"
-            android:layout_marginStart="30dp"
-            android:layout_gravity="end"
-            android:background="#F44336"/>
+            android:text="@string/choose_cat"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
 
 </RelativeLayout>

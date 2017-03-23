@@ -8,8 +8,8 @@
             android:title="Profile" />
         <item
             android:id="@+id/changeEmail"
-            android:title="Question"
-            android:icon="@drawable/question"/>
+            android:icon="@drawable/question"
+            android:title="Question" />
         <item
             android:id="@+id/delete_profile"
             android:icon="@drawable/leaderboard"

@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:focusable="true"
-    android:nextFocusDown="@+id/imgview"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:focusable="true"
+    android:nextFocusDown="@+id/imgview"
     tools:context=".ui.SignupActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:focusable="true"
         android:background="@color/colorPrimaryDark"
+        android:focusable="true"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
 
         <ImageView
+            android:id="@+id/imgview"
             android:layout_width="@dimen/logo_w_h"
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
+            android:contentDescription="@string/register_desc"
             android:focusable="true"
             android:nextFocusDown="@id/name"
-            android:id="@+id/imgview"
-            android:contentDescription="@string/register_desc"
             android:src="@mipmap/ic_launcher_app" />
 
 
@@ -39,12 +38,12 @@
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/name"
-                android:nextFocusUp="@id/imgview"
-                android:focusable="true"
-                android:nextFocusDown="@id/email"
                 android:contentDescription="@string/name"
+                android:focusable="true"
+                android:hint="@string/name"
                 android:maxLines="1"
+                android:nextFocusDown="@id/email"
+                android:nextFocusUp="@id/imgview"
                 android:singleLine="true"
                 android:textColor="@android:color/white" />
 
@@ -54,20 +53,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            android:nextFocusUp="@id/name"
-            android:focusable="true"
-            android:nextFocusDown="@id/password"
-            android:contentDescription="@string/email_desc"
-            android:inputType="textEmailAddress"
-            android:maxLines="1"
-            android:singleLine="true"
-            android:textColor="@android:color/white" />
+            <EditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/email_desc"
+                android:focusable="true"
+                android:hint="@string/email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:nextFocusDown="@id/password"
+                android:nextFocusUp="@id/name"
+                android:singleLine="true"
+                android:textColor="@android:color/white" />
         </android.support.design.widget.TextInputLayout>
+
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -76,16 +76,16 @@
                 android:id="@+id/password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:contentDescription="@string/enter_password"
+                android:focusable="true"
                 android:focusableInTouchMode="true"
                 android:hint="@string/hint_password"
-                android:nextFocusUp="@id/email"
-                android:focusable="true"
-                android:nextFocusDown="@+id/sign_up_button"
-                android:contentDescription="@string/enter_password"
                 android:imeActionId="@+id/login"
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:nextFocusDown="@+id/sign_up_button"
+                android:nextFocusUp="@id/email"
                 android:singleLine="true"
                 android:textColor="@android:color/white" />
 
@@ -98,11 +98,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:background="@color/colorAccent"
-            android:text="@string/action_sign_in_short"
-            android:nextFocusUp="@id/password"
-            android:nextFocusDown="@id/btn_reset_password"
-            android:focusable="true"
             android:contentDescription="@string/register_desc"
+            android:focusable="true"
+            android:nextFocusDown="@id/btn_reset_password"
+            android:nextFocusUp="@id/password"
+            android:text="@string/action_sign_in_short"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
 
@@ -112,12 +112,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
+            android:contentDescription="@string/forgot_password_desc"
             android:focusable="true"
-            android:nextFocusUp="@id/password"
             android:nextFocusDown="@+id/sign_in_button"
+            android:nextFocusUp="@id/password"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
-            android:contentDescription="@string/forgot_password_desc"
             android:textColor="@color/colorAccent" />
 
         <!-- Link to Login Screen -->
@@ -128,11 +128,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
+            android:contentDescription="@string/btn_link_to_login"
             android:focusable="true"
             android:nextFocusUp="@id/btn_reset_password"
             android:text="@string/btn_link_to_login"
             android:textAllCaps="false"
-            android:contentDescription="@string/btn_link_to_login"
             android:textColor="@color/white"
             android:textSize="15dp" />
     </LinearLayout>

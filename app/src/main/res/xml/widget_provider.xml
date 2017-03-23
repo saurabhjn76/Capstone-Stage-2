@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:initialLayout="@layout/widget_provider_layout"
     android:minHeight="100dip"
     android:minResizeHeight="100dip"
@@ -8,8 +10,6 @@
     android:previewImage="@drawable/app_logo"
     android:resizeMode="vertical|horizontal"
     android:updatePeriodMillis="1800000"
-    android:widgetCategory="keyguard|home_screen"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:widgetCategory="keyguard|home_screen">
 
 </appwidget-provider>

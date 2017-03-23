@@ -1,10 +1,7 @@
 package saurabhjn76.com.capstoneproject.service;
 
 import android.app.IntentService;
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Intent;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
@@ -24,12 +21,11 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import saurabhjn76.com.capstoneproject.Models.Question;
-import saurabhjn76.com.capstoneproject.Widget.WidgetProvider;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
  * a service on a separate handler thread.
- * <p/>
+ * <p>
  * TODO: Customize class - update intent actions, extra parameters and static
  * helper methods.
  */
@@ -67,12 +63,12 @@ public class MyIntentService extends IntentService {
             receiver.send(STATUS_RUNNING, Bundle.EMPTY);
 
             try {
-               ArrayList<Question> questions = downloadData(url);
+                ArrayList<Question> questions = downloadData(url);
 
                 /* Sending result back to activity */
                 if (null != questions && questions.size() > 0) {
                     //bundle.putStringArray("result", results);
-                    bundle.putParcelableArrayList("result",questions);
+                    bundle.putParcelableArrayList("result", questions);
                     receiver.send(STATUS_FINISHED, bundle);
                 }
             } catch (Exception e) {
@@ -116,8 +112,8 @@ public class MyIntentService extends IntentService {
         }
     }
 
-    private  ArrayList<Question> parseResult(String response) {
-        ArrayList<Question> questions= new ArrayList<>();
+    private ArrayList<Question> parseResult(String response) {
+        ArrayList<Question> questions = new ArrayList<>();
         try {
             JSONObject jsonObject = new JSONObject(response);
             JSONArray items = jsonObject.getJSONArray("results");
@@ -133,14 +129,14 @@ public class MyIntentService extends IntentService {
                     //  Log.e("Inc",inc[j]);
                 }
 
-                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;","\"").replaceAll("&#039;","'"), questionObj.getString("category"), questionObj.getString("correct_answer").replaceAll("&quot;","\"").replaceAll("&#039;","'"), inc, questionObj.getString("difficulty"));
+                Question question = new Question(i, questionObj.getString("question").replaceAll("&quot;", "\"").replaceAll("&#039;", "'"), questionObj.getString("category"), questionObj.getString("correct_answer").replaceAll("&quot;", "\"").replaceAll("&#039;", "'"), inc, questionObj.getString("difficulty"));
                 questions.add(question);
 
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return  questions;
+        return questions;
 
     }
 

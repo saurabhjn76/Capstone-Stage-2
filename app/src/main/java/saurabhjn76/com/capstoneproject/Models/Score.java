@@ -6,27 +6,39 @@ import android.os.Parcelable;
 /**
  * Created by saurabh on 21/3/17.
  */
-public class Score  implements  Parcelable{
+public class Score implements Parcelable {
+    public static final Parcelable.Creator<Score> CREATOR = new Parcelable.Creator<Score>() {
+        @Override
+        public Score createFromParcel(Parcel parcel) {
+            return new Score(parcel);
+        }
+
+        @Override
+        public Score[] newArray(int i) {
+            return new Score[i];
+        }
+    };
     public int id;
     public String name;
     public int scores;
     public String date;
     public String level;
 
-    public Score(){}
-
-    public Score(int id,String name, int scores, String date, String level)
-    {
-        this.id=id;
-        this.name=name;
-        this.level=level;
-        this.date=date;
-        this.scores=scores;
+    public Score() {
     }
+
+    public Score(int id, String name, int scores, String date, String level) {
+        this.id = id;
+        this.name = name;
+        this.level = level;
+        this.date = date;
+        this.scores = scores;
+    }
+
     protected Score(Parcel in) {
         name = in.readString();
         scores = in.readInt();
-        date=in.readString();
+        date = in.readString();
         level = in.readString();
         id = in.readInt();
     }
@@ -65,16 +77,4 @@ public class Score  implements  Parcelable{
         parcel.writeString(date);
 
     }
-
-    public static final Parcelable.Creator<Score> CREATOR = new Parcelable.Creator<Score>() {
-        @Override
-        public Score createFromParcel(Parcel parcel) {
-            return new Score(parcel);
-        }
-
-        @Override
-        public Score[] newArray(int i) {
-            return new Score[i];
-        }
-    };
 }

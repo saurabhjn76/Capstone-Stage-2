@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
     android:fitsSystemWindows="true"
+    android:focusable="true"
     tools:context=".ui.LoginActivity">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:focusable="true"
         android:background="@color/colorPrimary"
+        android:focusable="true"
         android:gravity="center"
         android:nextFocusDown="@+id/imageView"
         android:orientation="vertical"
@@ -20,52 +19,52 @@
 
 
         <ImageView
-            android:layout_width="@dimen/logo_w_h"
-            android:focusable="true"
             android:id="@+id/imgview"
+            android:layout_width="@dimen/logo_w_h"
             android:layout_height="@dimen/logo_w_h"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
-            android:nextFocusDown="@+id/email"
             android:contentDescription="@string/Login_message"
+            android:focusable="true"
+            android:nextFocusDown="@+id/email"
             android:src="@mipmap/ic_launcher_app" />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:focusable="true"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="true">
 
             <EditText
                 android:id="@+id/email"
                 android:layout_width="match_parent"
-                android:focusable="true"
-                android:nextFocusUp="@id/imgview"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/hint_email"
-                android:nextFocusDown="@+id/password"
-                android:inputType="textEmailAddress"
                 android:contentDescription="@string/enter_email"
+                android:focusable="true"
+                android:hint="@string/hint_email"
+                android:inputType="textEmailAddress"
+                android:nextFocusDown="@+id/password"
+                android:nextFocusUp="@id/imgview"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:focusable="true"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:focusable="true">
 
             <EditText
                 android:id="@+id/password"
-                android:focusable="true"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
+                android:contentDescription="@string/enter_password"
+                android:focusable="true"
                 android:hint="@string/hint_password"
+                android:inputType="textPassword"
                 android:nextFocusDown="@+id/btn_login"
                 android:nextFocusUp="@id/email"
-                android:inputType="textPassword"
-                android:contentDescription="@string/enter_password"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
         </android.support.design.widget.TextInputLayout>
@@ -74,29 +73,29 @@
 
         <Button
             android:id="@+id/btn_login"
-            android:focusable="true"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
+            android:background="@color/colorAccent"
+            android:contentDescription="@string/login_button"
+            android:focusable="true"
             android:nextFocusDown="@+id/btn_reset_password"
             android:nextFocusUp="@id/btn_login"
-            android:background="@color/colorAccent"
             android:text="@string/btn_login"
-            android:contentDescription="@string/login_button"
             android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/btn_reset_password"
             android:layout_width="fill_parent"
-            android:focusable="true"
-            android:nextFocusDown="@+id/btn_signup"
-            android:nextFocusUp="@id/btn_login"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@null"
+            android:contentDescription="@string/forgot_pwd"
+            android:focusable="true"
+            android:nextFocusDown="@+id/btn_signup"
+            android:nextFocusUp="@id/btn_login"
             android:text="@string/btn_forgot_password"
             android:textAllCaps="false"
-            android:contentDescription="@string/forgot_pwd"
             android:textColor="@color/colorAccent" />
 
         <!-- Link to Login Screen -->
@@ -106,12 +105,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
+            android:background="@null"
+            android:contentDescription="@string/register_btn"
             android:focusable="true"
             android:nextFocusUp="@id/btn_reset_password"
-            android:background="@null"
             android:text="@string/btn_link_to_register"
             android:textAllCaps="false"
-            android:contentDescription="@string/register_btn"
             android:textColor="@color/white"
             android:textSize="15dp" />
     </LinearLayout>
@@ -120,8 +119,8 @@
         android:id="@+id/progressBar"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:contentDescription="@string/check_cred"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
+        android:contentDescription="@string/check_cred"
         android:visibility="gone" />
 </android.support.design.widget.CoordinatorLayout>

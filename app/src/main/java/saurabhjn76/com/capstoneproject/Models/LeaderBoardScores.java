@@ -6,7 +6,18 @@ import android.os.Parcelable;
 /**
  * Created by saurabh on 22/3/17.
  */
-public class LeaderBoardScores  implements Parcelable {
+public class LeaderBoardScores implements Parcelable {
+    public static final Parcelable.Creator<LeaderBoardScores> CREATOR = new Parcelable.Creator<LeaderBoardScores>() {
+        @Override
+        public LeaderBoardScores createFromParcel(Parcel parcel) {
+            return new LeaderBoardScores(parcel);
+        }
+
+        @Override
+        public LeaderBoardScores[] newArray(int i) {
+            return new LeaderBoardScores[i];
+        }
+    };
     public String userid;
     public String user_name;
     public String name;
@@ -14,24 +25,25 @@ public class LeaderBoardScores  implements Parcelable {
     public String date;
     public String level;
 
-    public LeaderBoardScores(){}
-
-    public LeaderBoardScores(String userid, String user_name,String name, int scores, String date, String level)
-    {
-        this.userid=userid;
-        this.user_name=user_name;
-        this.name=name;
-        this.level=level;
-        this.date=date;
-        this.scores=scores;
+    public LeaderBoardScores() {
     }
+
+    public LeaderBoardScores(String userid, String user_name, String name, int scores, String date, String level) {
+        this.userid = userid;
+        this.user_name = user_name;
+        this.name = name;
+        this.level = level;
+        this.date = date;
+        this.scores = scores;
+    }
+
     protected LeaderBoardScores(Parcel in) {
         name = in.readString();
         scores = in.readInt();
-        date=in.readString();
+        date = in.readString();
         level = in.readString();
-        userid=in.readString();
-        user_name=in.readString();
+        userid = in.readString();
+        user_name = in.readString();
     }
 
     public String getName() {
@@ -73,16 +85,4 @@ public class LeaderBoardScores  implements Parcelable {
         parcel.writeString(date);
 
     }
-
-    public static final Parcelable.Creator<LeaderBoardScores> CREATOR = new Parcelable.Creator<LeaderBoardScores>() {
-        @Override
-        public LeaderBoardScores createFromParcel(Parcel parcel) {
-            return new LeaderBoardScores(parcel);
-        }
-
-        @Override
-        public LeaderBoardScores[] newArray(int i) {
-            return new LeaderBoardScores[i];
-        }
-    };
 }

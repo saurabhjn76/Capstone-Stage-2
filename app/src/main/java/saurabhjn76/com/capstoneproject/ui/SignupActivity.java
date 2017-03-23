@@ -29,14 +29,14 @@ import saurabhjn76.com.capstoneproject.R;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword,inputName;
+    private static final String TAG = SignupActivity.class.getSimpleName();
+    String userId;
+    private EditText inputEmail, inputPassword, inputName;
     private Button btnSignIn, btnSignUp, btnResetPassword;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
-    String userId;
-    private static final String TAG = SignupActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +77,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 final String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
-                final String name= inputName.getText().toString().trim();
+                final String name = inputName.getText().toString().trim();
 
                 if (TextUtils.isEmpty(email)) {
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
@@ -114,7 +114,7 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
-                                    createUser(name,email);
+                                    createUser(name, email);
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     finish();
                                 }
@@ -124,9 +124,10 @@ public class SignupActivity extends AppCompatActivity {
             }
         });
     }
+
     private void createUser(String name, String email) {
         if (TextUtils.isEmpty(userId)) {
-            userId =auth.getCurrentUser().getUid();
+            userId = auth.getCurrentUser().getUid();
         }
         User user = new User(name, email);
         FirebaseUser userd = auth.getCurrentUser();
