@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         };
-        toolbar.setTitle("Choose Category");
+        toolbar.setTitle(R.string.choose);
         v = findViewById(R.id.content_layout);
         gridView = (GridView) findViewById(R.id.gridView);
         FragmentManager manager = getSupportFragmentManager();
@@ -76,14 +76,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //  Toast.makeText(MainActivity.this, "" + position,
                 //    Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                intent.putExtra("POSITION", position);
+                intent.putExtra(getString(R.string.pos12), position);
                 startActivity(intent);
 
             }
         });
         if (!checknetconnection()) {
-            Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("CLOSE", new View.OnClickListener() {
+            Snackbar.make(v, R.string.no_in, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.clo, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
@@ -115,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         if (!checknetconnection()) {
-            Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("CLOSE", new View.OnClickListener() {
+            Snackbar.make(v, R.string.in1, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.co1, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
@@ -135,8 +135,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onRestart() {
         super.onRestart();
         if (!checknetconnection()) {
-            Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("CLOSE", new View.OnClickListener() {
+            Snackbar.make(v, R.string.in2, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.co2, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
@@ -153,8 +153,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onPostResume() {
         super.onPostResume();
         if (!checknetconnection()) {
-            Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("CLOSE", new View.OnClickListener() {
+            Snackbar.make(v, R.string.in4, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.co3, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
@@ -172,8 +172,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onSaveInstanceState(outState, outPersistentState);
         // outState.putParcelableArrayList("Movie_Saved", MainFragment.instance.movies);
         if (!checknetconnection()) {
-            Snackbar.make(v, "No internet Connection", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("CLOSE", new View.OnClickListener() {
+            Snackbar.make(v, R.string.in5, Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.co6, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
 
@@ -209,7 +209,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             auth.signOut();
             mdb.removeAllScore(getContentResolver());
             Intent wIntent = new Intent(this, WidgetProvider.class);
-            wIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+            wIntent.setAction(getString(R.string.wigup));
             int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
             wIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
             sendBroadcast(wIntent);

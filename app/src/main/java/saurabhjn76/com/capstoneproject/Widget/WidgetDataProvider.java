@@ -107,7 +107,7 @@ class WidgetDataProvider implements RemoteViewsFactory, LoaderManager.LoaderCall
         level.clear();
         scores.clear();
         date.clear();
-        mContext.grantUriPermission("com.udacity.stockhawk", ScoreContract.CONTENT_URI, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        mContext.grantUriPermission(mContext.getString(R.string.package_name), ScoreContract.CONTENT_URI, Intent.FLAG_GRANT_READ_URI_PERMISSION);
         cursor = mContext.getContentResolver().query(ScoreContract.CONTENT_URI, ScoreContract.ScoreEntry.SCORE_COLUMNS, null, null, null);
         if (cursor != null) {
             while (cursor.moveToNext()) {
@@ -118,7 +118,7 @@ class WidgetDataProvider implements RemoteViewsFactory, LoaderManager.LoaderCall
             }
             cursor.close();
         }
-        Log.e("Cursor", scores.toString());
+      //  Log.e("Cursor", scores.toString());
     }
 
     @Override

@@ -52,8 +52,8 @@ public class ProfileActivity extends AppCompatActivity implements LoaderManager.
         getSupportLoaderManager().initLoader(SCORE_LOADER, null, this);
 
         // get reference to 'users' node
-        mFirebaseDatabase = mFirebaseInstance.getReference("users");
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        mFirebaseDatabase = mFirebaseInstance.getReference(getString(R.string.us1));
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference(getString(R.string.us2));
 
         name = (TextView) findViewById(R.id.name);
         email = (TextView) findViewById(R.id.email);
@@ -64,7 +64,7 @@ public class ProfileActivity extends AppCompatActivity implements LoaderManager.
 
                 User user = dataSnapshot.getValue(User.class);
 
-                Log.d(TAG, "User name: " + user.getName() + ", email " + user.getEmail());
+                Log.d(TAG, getString(R.string.uname) + user.getName() + getString(R.string.email12) + user.getEmail());
                 name.setText(user.getName());
                 email.setText(user.getEmail());
             }
@@ -72,7 +72,7 @@ public class ProfileActivity extends AppCompatActivity implements LoaderManager.
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
+                Log.w(TAG, getString(R.string.fread), error.toException());
             }
         });
 

@@ -62,37 +62,37 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
 
-        String category = "&category=12";
+        String category = getString(R.string.cat_1);
         int cat = 12;
-        if (getIntent().getIntExtra("SELECTID", -1) != -1) {
-            switch (getIntent().getIntExtra("SELECTID", 1)) {
+        if (getIntent().getIntExtra(getString(R.string.select1), -1) != -1) {
+            switch (getIntent().getIntExtra(getString(R.string.select12), 1)) {
                 case 1:
-                    level = "easy";
+                    level = getString(R.string.easy1);
                     break;
                 case 2:
-                    level = "medium";
+                    level = getString(R.string.med);
                     break;
                 case 3:
-                    level = "difficult";
+                    level = getString(R.string.di);
                     break;
             }
         }
-        if (getIntent().getIntExtra("CATEGORY", -1) != -1) {
-            cat = getIntent().getIntExtra("CATEGORY", 12);
+        if (getIntent().getIntExtra(getString(R.string.caa), -1) != -1) {
+            cat = getIntent().getIntExtra(getString(R.string.caaa), 12);
             if (cat != 9)
-                category = "&category=" + cat;
+                category = getString(R.string.catr) + cat;
             else
                 category = "";
         }
         mReceiver = new MResultReceiver(new Handler());
         mReceiver.setReceiver(this);
         Intent intent = new Intent(Intent.ACTION_SYNC, null, this, MyIntentService.class);
-        String url = "https://opentdb.com/api.php?amount=20" + category + "&type=multiple";
+        String url = getString(R.string.mlink) + category + getString(R.string.catr1);
 
 /* Send optional extras to Download IntentService */
-        intent.putExtra("url", url);
-        intent.putExtra("receiver", mReceiver);
-        intent.putExtra("requestId", 101);
+        intent.putExtra(getString(R.string.url), url);
+        intent.putExtra(getString(R.string.rec), mReceiver);
+        intent.putExtra(getString(R.string.req), 101);
 
         startService(intent);
 
@@ -204,7 +204,7 @@ public class QuestionsActivity extends AppCompatActivity implements MResultRecei
                 setProgressBarIndeterminateVisibility(false);
 
                 //  String[] results = resultData.getStringArray("result");
-                ArrayList<Question> questions = (ArrayList<Question>) resultData.getSerializable("result");
+                ArrayList<Question> questions = (ArrayList<Question>) resultData.getSerializable(getString(R.string.res));
                 for (Question question : questions) {
                     mSectionsPagerAdapter.addQuestion(question);
                     mSectionsPagerAdapter.notifyDataSetChanged();

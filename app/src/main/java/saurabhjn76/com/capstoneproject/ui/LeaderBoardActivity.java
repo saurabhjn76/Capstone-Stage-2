@@ -45,17 +45,17 @@ public class LeaderBoardActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mFirebaseInstance = FirebaseDatabase.getInstance();
         // get reference to 'users' node
-        mFirebaseDatabase = mFirebaseInstance.getReference("scores");
+        mFirebaseDatabase = mFirebaseInstance.getReference(getString(R.string.sco1));
         userId = auth.getCurrentUser().getUid();
         //  User user = new User(name, email);
-        Query queryRef = mFirebaseDatabase.orderByChild("scores").limitToLast(100);
+        Query queryRef = mFirebaseDatabase.orderByChild(getString(R.string.sco2)).limitToLast(100);
         queryRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     LeaderBoardScores score = postSnapshot.getValue(LeaderBoardScores.class);
-                    Log.e(TAG, "values is " + score.getUser_name() + " " + score.getScores());
+                    Log.e(TAG, getString(R.string.val12) + score.getUser_name() + " " + score.getScores());
                     lScores.add(score);
                     // Toast.makeText(getApplicationContext(),score.getScores(),Toast.LENGTH_SHORT).show();
                 }
@@ -68,7 +68,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.e(TAG, "Failed to read score", error.toException());
+                Log.e(TAG, getString(R.string.fail_msg), error.toException());
             }
         });
     }
@@ -85,16 +85,16 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
                 // Check for null
                 if (scores == null) {
-                    Log.e(TAG, "score data is null!");
+                    Log.e(TAG, getString(R.string.null_ss));
                     return;
                 }
-                Log.e(TAG, "score data is changed!" + scores.getName() + ", " + scores.getUser_name());
+                Log.e(TAG, getString(R.string.data_s) + scores.getName() + ", " + scores.getUser_name());
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.e(TAG, "Failed to read score", error.toException());
+                Log.e(TAG, getString(R.string.fail_s), error.toException());
             }
         });
     }

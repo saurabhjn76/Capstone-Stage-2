@@ -51,9 +51,9 @@ public class DetailFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if (getActivity().getIntent().getIntExtra("POSITION", -23) != -23)
-            question_id = getActivity().getIntent().getIntExtra("POSITION", -23);
-        Log.e("Ques", question_id + "");
+        if (getActivity().getIntent().getIntExtra(getActivity().getString(R.string.pos1), -23) != -23)
+            question_id = getActivity().getIntent().getIntExtra(getActivity().getString(R.string.pos1), -23);
+       // Log.e("Ques", question_id + "");
         Picasso.with(getContext())
                 .load(ImageAdapter.mImgUrls[question_id])//this is optional the image to display while the url image is downloading
                 .error(R.drawable.app_logo)         //this is also optional if some error has occurred in downloading the image this image would be displayed
@@ -82,8 +82,8 @@ public class DetailFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), QuestionsActivity.class);
-                intent.putExtra("SELECTID", selectedId);
-                intent.putExtra("CATEGORY", CategoryNumber(question_id));
+                intent.putExtra(getString(R.string.select_id), selectedId);
+                intent.putExtra(getString(R.string.categg), CategoryNumber(question_id));
                 startActivity(intent);
             }
         });

@@ -12,7 +12,7 @@ import android.util.Log;
 public class ScoresProvider extends ContentProvider {
     static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     private static final int SCORE_LIST = 1;
-    static String LOG_TAG = "Database";
+    static final String LOG_TAG = "Database";
 
     static {
         sUriMatcher.addURI(ScoreContract.AUTHORITY, "scores", SCORE_LIST);

@@ -51,36 +51,36 @@ public class ResultActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         mFirebaseInstance = FirebaseDatabase.getInstance();
         // get reference to 'users' node
-        mFirebaseDatabase = mFirebaseInstance.getReference("scores");
+        mFirebaseDatabase = mFirebaseInstance.getReference(getString(R.string.sscr));
         userId = auth.getCurrentUser().getUid();
         mdb = new ScoresDB();
         int scored = 0;
         contentResolver = getContentResolver();
         Button homeButton = (Button) findViewById(R.id.Choose);
-        toolbar.setTitle("Result");
+        toolbar.setTitle(R.string.resul);
         Intent intent = getIntent();
-        String level = intent.getStringExtra("LEVEL");
-        String category = intent.getStringExtra("CATEGORY");
-        if (intent.getIntExtra("SCORE", -1) == -1) {
-            Toast.makeText(ResultActivity.this, "Error Occured,Sorry for inconvenience", Toast.LENGTH_SHORT).show();
+        String level = intent.getStringExtra(getString(R.string.lvl));
+        String category = intent.getStringExtra(getString(R.string.catego));
+        if (intent.getIntExtra(getString(R.string.sco), -1) == -1) {
+            Toast.makeText(ResultActivity.this, R.string.error_msg, Toast.LENGTH_SHORT).show();
             Intent newIntet = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(newIntet);
         } else {
-            scored = intent.getIntExtra("SCORE", -1);
+            scored = intent.getIntExtra(getString(R.string.scod), -1);
             result_score.setText(scored * 5 + "%");
             int animationDuration = 2500; // 2500ms = 2,5s
             circularProgressBar.setProgressWithAnimation(scored * 5, animationDuration);
         }
-        String date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+        String date = new SimpleDateFormat(getString(R.string.datf)).format(new Date());
 
         Score score = new Score(mdb.getCount(contentResolver) + 1, category, scored * 5, date, level);
         mdb.addScore(contentResolver, score);
         Intent wIntent = new Intent(this, WidgetProvider.class);
-        wIntent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+        wIntent.setAction(getString(R.string.widup));
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), WidgetProvider.class));
         wIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
         sendBroadcast(wIntent);
-        Log.e("Score Added", "Move to database");
+        //Log.e("Score Added", "Move to database");
         LeaderBoardScores scores = new LeaderBoardScores(userId, auth.getCurrentUser().getDisplayName(), category, scored * 5, date, level);
         mFirebaseDatabase.push().setValue(scores); // add firebase exact user
         addScoreChangeListener();
@@ -116,16 +116,16 @@ public class ResultActivity extends AppCompatActivity {
 
                 // Check for null
                 if (scores == null) {
-                    Log.e(TAG, "score data is null!");
+                    Log.e(TAG, getString(R.string.null_s));
                     return;
                 }
-                Log.e(TAG, "score data is changed!" + scores.getName() + ", " + scores.getUser_name());
+                Log.e(TAG, getString(R.string.change_s) + scores.getName() + ", " + scores.getUser_name());
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
-                Log.e(TAG, "Failed to read score", error.toException());
+                Log.e(TAG, getString(R.string.eroor), error.toException());
             }
         });
     }
