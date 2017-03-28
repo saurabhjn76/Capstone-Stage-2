@@ -1,12 +1,12 @@
 package saurabhjn76.com.capstoneproject.ui;
 // thanks http://www.androidhive.info/2016/06/android-getting-started-firebase-simple-login-registration-auth/
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import saurabhjn76.com.capstoneproject.R;
 
@@ -24,7 +25,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
+    String email;
     private ProgressBar progressBar;
+    private FirebaseAuth.AuthStateListener mAuthListener;
     private Button btnSignup, btnLogin, btnReset;
 
     @Override
@@ -33,8 +36,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
-
-        if (auth.getCurrentUser() != null) {
+        FirebaseUser us=auth.getCurrentUser();
+        if (auth.getCurrentUser() != null && us.isEmailVerified() ) {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
             finish();
         }
@@ -72,16 +75,16 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = inputEmail.getText().toString();
+                email = inputEmail.getText().toString();
                 final String password = inputPassword.getText().toString();
 
                 if (TextUtils.isEmpty(email)) {
-                    Toast.makeText(getApplicationContext(), R.string.eamil, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 if (TextUtils.isEmpty(password)) {
-                    Toast.makeText(getApplicationContext(), R.string.pass, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Enter password!", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -104,13 +107,46 @@ public class LoginActivity extends AppCompatActivity {
                                         Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
                                     }
                                 } else {
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    startActivity(intent);
-                                    finish();
+
+
                                 }
                             }
                         });
             }
         });
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null && user.isEmailVerified()) {
+                    // User is signed in
+                    Toast.makeText(LoginActivity.this,"Welcome Back "+email,Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    Log.d("", "onAuthStateChanged:signed_in:" + user.getUid());
+                    finish();
+                }
+                else {
+                    // User is signed out
+                    Toast.makeText(LoginActivity.this,"Verify your email to sign in with "+email,Toast.LENGTH_SHORT).show();
+                    Log.d("", "onAuthStateChanged:signed_out");
+
+                }
+                // ...
+            }
+        };
+
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        auth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            auth.removeAuthStateListener(mAuthListener);
+        }
     }
 }
